@@ -4,14 +4,15 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     CLERK_SECRET_KEY: z.string().min(1),
+    MONGODB_URI: z.string().min(10),
   },
   clientPrefix: "NEXT_PUBLIC_",
   client: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
-    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: z.string().url(),
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().min(1),
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().min(1),
+    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: z.string().min(1),
+    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: z.string().min(1),
   },
   runtimeEnv: process.env,
 });
