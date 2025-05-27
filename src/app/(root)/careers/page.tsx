@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const careers = [
@@ -20,8 +21,8 @@ const careers = [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=764&q=80",
   },
   {
-    type: "Internship (for students)",
-    title: "Internship Program",
+    type: "Internship",
+    title: "Internship Programs for students",
     location: "Onsite / Remote",
     description:
       "Kickstart your career with hands-on experience. Our internship program is designed for students eager to learn and contribute.",
@@ -55,8 +56,8 @@ const Page = () => {
               <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 dark:text-gray-400 flex-1">
                 {career.description}
               </p>
-              <a
-                href="#"
+              <Link
+                href={`/careers/${career.type.toLocaleLowerCase()}`}
                 className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600"
               >
                 Find out more
@@ -66,7 +67,7 @@ const Page = () => {
                 >
                   &rarr;
                 </span>
-              </a>
+              </Link>
             </div>
           </article>
         ))}
