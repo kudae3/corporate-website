@@ -19,7 +19,11 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <Header />
-          {children}
+          <div>
+            <div className="max-w-7xl min-h-screen mx-auto py-12 px-5">
+              {children}
+            </div>
+          </div>
           <Footer />
         </body>
       </html>

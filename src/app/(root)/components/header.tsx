@@ -39,12 +39,12 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <a
+                  <Link
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href={routes.Careers}
                   >
                     Careers
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
