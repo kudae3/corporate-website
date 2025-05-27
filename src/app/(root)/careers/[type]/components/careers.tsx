@@ -18,6 +18,7 @@ const Careers = ({ careers, type }: { careers: Career[]; type: string }) => {
               key={career._id}
               career={career}
               selected={selectedCareer._id === career._id}
+              onSelect={() => setSelectedCareer(career)}
             />
           ))}
         </ul>
