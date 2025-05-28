@@ -4,7 +4,13 @@ import { Career } from "../../Types/career";
 import List from "./list";
 import Detail from "./detail";
 
-const Careers = ({ careers, type }: { careers: Career[]; type: string }) => {
+const Careers = ({
+  careers,
+  type,
+}: {
+  careers: Career[];
+  type: Career["type"];
+}) => {
   const [selectedCareer, setSelectedCareer] = useState(careers[0]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

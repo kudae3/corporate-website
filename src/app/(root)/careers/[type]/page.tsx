@@ -1,10 +1,12 @@
 import React from "react";
 import Careers from "./components/careers";
+import { Career } from "../Types/career";
+import { notFound } from "next/navigation";
 
-const careers = [
+const careers: Career[] = [
   {
     _id: 1,
-    type: "Internship",
+    type: "internship",
     title: "Mid-Level Data Analyst",
     location: "Onsite / Remote",
     salary: "30$",
@@ -16,7 +18,7 @@ const careers = [
   },
   {
     _id: 2,
-    type: "Internship",
+    type: "internship",
     title: "Mid-Level Data Analyst",
     location: "Onsite / Remote",
     salary: "40$",
@@ -28,7 +30,7 @@ const careers = [
   },
   {
     _id: 3,
-    type: "Internship",
+    type: "internship",
     title: "Mid-Level Data Analyst",
     location: "Onsite / Remote",
     salary: "60$",
@@ -40,10 +42,20 @@ const careers = [
   },
 ];
 
-const page = async ({ params }: { params: Promise<{ type: string }> }) => {
+const VALID_TYPES: Career["type"][] = ["part-time", "full-time", "internship"];
+
+const page = async ({
+  params,
+}: {
+  params: Promise<{ type: Career["type"] }>;
+}) => {
   const { type } = await params;
 
-  return <Careers careers={careers} type={type} />;
+  if (!VALID_TYPES.includes(type as Career["type"])) {
+    notFound();
+  }
+
+  return <Careers careers={careers} type={type as Career["type"]} />;
 };
 
 export default page;
