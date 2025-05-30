@@ -1,10 +1,10 @@
 import { model, Schema, Document, models } from "mongoose";
 
 export interface IUser {
-  name: string;
-  username: string;
+  clerkId: string;
+  username?: string;
   email: string;
-  password: string;
+  password?: string;
   phone?: string;
   address?: string;
   avatar?: string;
@@ -15,13 +15,13 @@ export interface IuserDoc extends IUser, Document {}
 
 const UserSchema = new Schema<IuserDoc>(
   {
-    name: {
+    clerkId: {
       type: String,
       required: true,
+      unique: true,
     },
     username: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
@@ -30,7 +30,6 @@ const UserSchema = new Schema<IuserDoc>(
     },
     password: {
       type: String,
-      required: true,
     },
     phone: {
       type: String,

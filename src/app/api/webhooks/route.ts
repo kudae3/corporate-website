@@ -1,18 +1,45 @@
+import dbConnect from "@/database/dbConnect";
+import User from "@/models/user.model";
 import { verifyWebhook } from "@clerk/nextjs/webhooks";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
     const evt = await verifyWebhook(req);
 
-    // Do something with payload
-    // For this guide, log payload to console
-    const { id } = evt.data;
-    const eventType = evt.type;
-    console.log(
-      `Received webhook with ID ${id} and event type of ${eventType}`
-    );
-    console.log("Webhook payload:", evt.data);
+    if (evt.type == "user.created") {
+      await dbConnect();
+
+      const data = evt.data;
+      const id = data?.id;
+      let username = data?.username;
+      const email = data?.email_addresses?.[0]?.email_address;
+
+      if (!username) {
+        username = email ? email.split("@")[0] : "unknown_user";
+      }
+
+      // check if user already exists
+      const existingUser = await User.findOne({ email });
+      if (!existingUser) {
+        const newUser = new User({
+          clerkId: id,
+          username,
+          email,
+          role: "user",
+        });
+        await newUser.save();
+        return NextResponse.json(
+          {
+            success: true,
+            message: "User created successfully",
+            data: newUser,
+          },
+          { status: 201 }
+        );
+      }
+      console.log("Webhook payload:", data);
+    }
 
     return new Response("Webhook received", { status: 200 });
   } catch (err) {
