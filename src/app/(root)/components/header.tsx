@@ -30,12 +30,12 @@ const Header = () => {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a
+                  <Link
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href={routes.Home}
                   >
-                    About
-                  </a>
+                    Home
+                  </Link>
                 </li>
 
                 <li>
