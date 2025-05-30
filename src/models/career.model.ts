@@ -1,6 +1,17 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema, Document } from "mongoose";
 
-const CareerSchema = new Schema(
+export interface ICareer {
+  title: string;
+  type: "full-time" | "part-time" | "internship";
+  location: string;
+  description: string;
+  requirements: string;
+  salary?: string;
+  postedBy: Schema.Types.ObjectId;
+}
+export interface ICareerDoc extends ICareer, Document {}
+
+const CareerSchema = new Schema<ICareerDoc>(
   {
     title: {
       type: String,
@@ -34,5 +45,5 @@ const CareerSchema = new Schema(
   },
   { timestamps: true }
 );
-const Career = models.Career || model("Career", CareerSchema);
+const Career = models.Career || model<ICareerDoc>("Career", CareerSchema);
 export default Career;

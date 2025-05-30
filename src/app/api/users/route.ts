@@ -9,6 +9,7 @@ export async function GET() {
     return NextResponse.json(
       {
         success: true,
+        massage: "Users fetched successfully",
         data: users,
       },
       { status: 200 }
