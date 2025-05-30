@@ -11,7 +11,7 @@ export const GET = async () => {
   try {
     await dbConnect();
     const careers = await Career.find();
-    return successResponse("career fetched successfully", careers, 200);
+    return successResponse("careers fetched successfully", careers, 200);
   } catch (error) {
     return errorResponse("Failed to fetch careers", error, 500);
   }
