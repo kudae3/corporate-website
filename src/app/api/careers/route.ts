@@ -1,5 +1,7 @@
 import careerSchema from "@/app/schemas/CareerSchema";
 import dbConnect from "@/database/dbConnect";
+import errorResponse from "@/lib/errorResponse";
+import successResponse from "@/lib/successResponse";
 import Career from "@/models/career.model";
 import User from "@/models/user.model";
 import { getAuth } from "@clerk/nextjs/server";
@@ -9,24 +11,9 @@ export const GET = async () => {
   try {
     await dbConnect();
     const careers = await Career.find();
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Careers fetched successfully",
-        data: careers,
-      },
-      { status: 200 }
-    );
+    return successResponse("career fetched successfully", careers, 200);
   } catch (error) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to fetch careers",
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 404 }
-    );
+    return errorResponse("Failed to fetch careers", error, 500);
   }
 };
 
@@ -75,23 +62,8 @@ export const POST = async (request: NextRequest) => {
 
     const newCareer = new Career({ ...parsed.data, postedBy: authUser._id });
     await newCareer.save();
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Career created successfully",
-        data: newCareer,
-      },
-      { status: 201 }
-    );
+    return successResponse("Career created successfully", newCareer, 201);
   } catch (error) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to create career",
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 }
-    );
+    return errorResponse("Failed to create career", error, 500);
   }
 };

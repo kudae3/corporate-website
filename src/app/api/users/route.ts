@@ -1,27 +1,14 @@
 import dbConnect from "@/database/dbConnect";
+import errorResponse from "@/lib/errorResponse";
+import successResponse from "@/lib/successResponse";
 import User from "@/models/user.model";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     await dbConnect();
     const users = await User.find();
-    return NextResponse.json(
-      {
-        success: true,
-        massage: "Users fetched successfully",
-        data: users,
-      },
-      { status: 200 }
-    );
+    return successResponse("Users fetched successfully", users, 200);
   } catch (error) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Failed to fetch users",
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 404 }
-    );
+    return errorResponse("Failed to fetch users", error, 500);
   }
 }

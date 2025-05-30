@@ -1,7 +1,8 @@
 import dbConnect from "@/database/dbConnect";
+import successResponse from "@/lib/successResponse";
 import User from "@/models/user.model";
 import { verifyWebhook } from "@clerk/nextjs/webhooks";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,19 +30,10 @@ export async function POST(req: NextRequest) {
           role: "user",
         });
         await newUser.save();
-        return NextResponse.json(
-          {
-            success: true,
-            message: "User created successfully",
-            data: newUser,
-          },
-          { status: 201 }
-        );
+        return successResponse("User created successfully", newUser, 201);
       }
       console.log("Webhook payload:", data);
     }
-
-    return new Response("Webhook received", { status: 200 });
   } catch (err) {
     console.error("Error verifying webhook:", err);
     return new Response("Error verifying webhook", { status: 400 });
