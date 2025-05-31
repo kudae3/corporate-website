@@ -3,10 +3,43 @@
 import routes from "@/routes";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const Header = () => {
+const Navbar = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Hide navbar after scrolling down 1200px
+      if (currentScrollY > 1200 && currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      }
+      // Show navbar immediately when scrolling up from any position
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      // Show navbar when at top (less than 1200px)
+      else if (currentScrollY <= 1200) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="bg-white dark:bg-gray-900">
+    <header
+      className={`bg-white dark:bg-gray-900 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
@@ -39,12 +72,12 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href={routes.Careers}
+                    href="#"
                   >
-                    Careers
-                  </Link>
+                    Services
+                  </a>
                 </li>
 
                 <li>
@@ -61,17 +94,17 @@ const Header = () => {
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                     href="#"
                   >
-                    Services
+                    Projects
                   </a>
                 </li>
 
                 <li>
-                  <a
+                  <Link
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href={routes.Careers}
                   >
-                    Projects
-                  </a>
+                    Careers
+                  </Link>
                 </li>
 
                 <li>
@@ -136,4 +169,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

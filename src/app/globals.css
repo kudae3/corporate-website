@@ -32,6 +32,6 @@ body {
     @apply text-3xl font-medium mb-16 text-center;
   }
   .container {
-    @apply max-w-7xl min-h-screen mx-auto py-12 px-5;
+    @apply max-w-7xl min-h-screen mx-auto py-28 px-5;
   }
 }
