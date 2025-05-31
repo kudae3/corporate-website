@@ -20,9 +20,7 @@ export default function RootLayout({
         <body>
           <Header />
           <div>
-            <div className="max-w-7xl min-h-screen mx-auto py-12 px-5">
-              {children}
-            </div>
+            <div className="min-h-screen">{children}</div>
           </div>
           <Footer />
         </body>

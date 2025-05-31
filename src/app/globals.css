@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: var(--color-teal-600);
+  --color-secondary: #63b4ff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,5 +30,8 @@ body {
 @layer utilities {
   .text-title {
     @apply text-3xl font-medium mb-16 text-center;
+  }
+  .container {
+    @apply max-w-7xl min-h-screen mx-auto py-12 px-5;
   }
 }

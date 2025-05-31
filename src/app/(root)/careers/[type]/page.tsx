@@ -19,7 +19,11 @@ const page = async ({
 
   const response = await getCareer(type);
 
-  return <Careers careers={response} type={type as Career["type"]} />;
+  return (
+    <div className="container">
+      <Careers careers={response} type={type as Career["type"]} />
+    </div>
+  );
 };
 
 export default page;

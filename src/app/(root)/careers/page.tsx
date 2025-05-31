@@ -33,7 +33,7 @@ const careers = [
 
 const Page = () => {
   return (
-    <div>
+    <div className="container">
       <p className="text-title">Careers at Our Company</p>
       <div className="grid gap-8 md:grid-cols-3">
         {careers.map((career) => (
