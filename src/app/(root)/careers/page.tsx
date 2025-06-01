@@ -16,7 +16,7 @@ const careers = [
     description:
       "Take your career to the next level with our full-time positions. Enjoy benefits, growth, and a dynamic work environment.",
     image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=764&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     type: "part-time",
@@ -24,7 +24,7 @@ const careers = [
     description:
       "Flexible hours for those seeking work-life balance. Join us as a part-time team member and grow your career at your own pace.",
     image:
-      "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
+      "https://images.unsplash.com/photo-1624948384140-e48e47087fad?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     type: "internship",
@@ -73,7 +73,7 @@ const Page = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6">
-                <div className="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="bg-secondary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   {career.type}
                 </div>
               </div>

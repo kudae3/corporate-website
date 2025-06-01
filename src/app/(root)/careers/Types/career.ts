@@ -4,6 +4,7 @@ export type Career = {
   location: string;
   type: "part-time" | "full-time" | "internship";
   description: string;
+  requirements: string;
   salary: string;
   createdAt: string;
   updatedAt: string;
