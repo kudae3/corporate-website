@@ -96,7 +96,9 @@ const Page = () => {
                   asChild
                   className="border-primary/30 text-primary hover:bg-primary/10 px-8 py-3 rounded-full font-semibold transition-all duration-300"
                 >
-                  <Link href={`/careers/${career.type.toLocaleLowerCase()}`}>
+                  <Link
+                    href={`/careers/${career.type.toLocaleLowerCase()}/detail`}
+                  >
                     Learn More →
                   </Link>
                 </Button>
