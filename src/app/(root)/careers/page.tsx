@@ -1,10 +1,17 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { Alert } from "../components/AlertDialog";
 import Link from "next/link";
 import React from "react";
+import FullTime from "./[type]/detail/components/fullTime";
+import Internship from "./[type]/detail/components/internship";
+import PartTime from "./[type]/detail/components/partTime";
+import { useRouter } from "next/navigation";
 
 const careers = [
   {
-    type: "Full-Time",
+    type: "full-time",
     title: "Full-Time Careers",
     description:
       "Take your career to the next level with our full-time positions. Enjoy benefits, growth, and a dynamic work environment.",
@@ -12,7 +19,7 @@ const careers = [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=764&q=80",
   },
   {
-    type: "Part-Time",
+    type: "part-time",
     title: "Part-Time Opportunities",
     description:
       "Flexible hours for those seeking work-life balance. Join us as a part-time team member and grow your career at your own pace.",
@@ -20,7 +27,7 @@ const careers = [
       "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
   },
   {
-    type: "Internship",
+    type: "internship",
     title: "Internship Programs for students",
     description:
       "Kickstart your career with hands-on experience. Our internship program is designed for students eager to learn and contribute.",
@@ -30,6 +37,7 @@ const careers = [
 ];
 
 const Page = () => {
+  let router = useRouter();
   return (
     <div className="container">
       <div className="text-center mb-16">
@@ -91,17 +99,29 @@ const Page = () => {
                     Apply Now
                   </Link>
                 </Button>
-                <Button
-                  variant="outline"
-                  asChild
-                  className="border-primary/30 text-primary hover:bg-primary/10 px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                <Alert
+                  title={`${career.title} Details`}
+                  action="Apply Now"
+                  trigger={
+                    <Button
+                      variant="outline"
+                      className="border-primary/30 text-primary hover:bg-primary/10 px-8 py-3 rounded-full font-semibold transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More →
+                    </Button>
+                  }
+                  onAction={() =>
+                    router.push(`/careers/${career.type.toLocaleLowerCase()}`)
+                  }
                 >
-                  <Link
-                    href={`/careers/${career.type.toLocaleLowerCase()}/detail`}
-                  >
-                    Learn More →
-                  </Link>
-                </Button>
+                  {career.type === "full-time" ? (
+                    <FullTime />
+                  ) : career.type === "part-time" ? (
+                    <PartTime />
+                  ) : career.type === "internship" ? (
+                    <Internship />
+                  ) : null}
+                </Alert>
               </div>
             </div>
 
