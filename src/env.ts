@@ -6,6 +6,7 @@ export const env = createEnv({
     CLERK_SECRET_KEY: z.string().min(1),
     MONGODB_URI: z.string().min(10),
     CLERK_WEBHOOK_SIGNING_SECRET: z.string().min(1),
+    ADMIN_EMAIL: z.string().email().min(1),
   },
   clientPrefix: "NEXT_PUBLIC_",
   client: {
