@@ -1,5 +1,5 @@
-import errorResponse from "@/lib/errorResponse";
-import successResponse from "@/lib/successResponse";
+import errorResponse from "@/lib/responses/errorResponse";
+import successResponse from "@/lib/responses/successResponse";
 import Career from "@/models/career.model";
 import { NextRequest } from "next/server";
 

@@ -1,6 +1,6 @@
 import dbConnect from "@/database/dbConnect";
 import { env } from "@/env";
-import successResponse from "@/lib/successResponse";
+import successResponse from "@/lib/responses/successResponse";
 import User from "@/models/user.model";
 import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { NextRequest } from "next/server";

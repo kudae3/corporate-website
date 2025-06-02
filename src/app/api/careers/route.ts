@@ -1,9 +1,9 @@
-import careerSchema from "@/app/schemas/CareerSchema";
 import dbConnect from "@/database/dbConnect";
-import errorResponse from "@/lib/errorResponse";
-import successResponse from "@/lib/successResponse";
+import errorResponse from "@/lib/responses/errorResponse";
+import successResponse from "@/lib/responses/successResponse";
 import Career from "@/models/career.model";
 import User from "@/models/user.model";
+import careerSchema from "@/schemas/CareerSchema";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 

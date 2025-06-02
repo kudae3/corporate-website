@@ -1,6 +1,6 @@
 import dbConnect from "@/database/dbConnect";
-import errorResponse from "@/lib/errorResponse";
-import successResponse from "@/lib/successResponse";
+import errorResponse from "@/lib/responses/errorResponse";
+import successResponse from "@/lib/responses/successResponse";
 import User from "@/models/user.model";
 
 export async function GET() {
