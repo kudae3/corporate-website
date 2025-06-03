@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/alert-dialog";
 
 type Alerts = {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   cancel?: string;
   action: string;
   trigger?: React.ReactNode;
+  btnDisabled?: boolean;
   onAction?: () => void;
 };
 
@@ -25,6 +26,7 @@ export function Alert({
   action,
   children,
   trigger,
+  btnDisabled = false,
   onAction,
 }: Alerts) {
   return (
@@ -41,7 +43,11 @@ export function Alert({
           <AlertDialogCancel className="cursor-pointer hover:bg-slate-700">
             {cancel}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={onAction} className="cursor-pointer">
+          <AlertDialogAction
+            onClick={onAction}
+            className="cursor-pointer"
+            disabled={btnDisabled}
+          >
             {action}
           </AlertDialogAction>
         </AlertDialogFooter>

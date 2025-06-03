@@ -1,6 +1,7 @@
 import React from "react";
 import { Career } from "../../Types/career";
 import { Button } from "@/components/ui/button";
+import Submit from "./submit";
 
 const Detail = ({ career }: { career: Career }) => {
   return (
@@ -92,9 +93,8 @@ const Detail = ({ career }: { career: Career }) => {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <Button className="flex-1 bg-primary hover:bg-primary/90 text-white">
-          Apply Now
-        </Button>
+        <Submit career={career} />
+
         <Button
           variant="outline"
           className="flex-1 border-secondary text-secondary hover:bg-secondary/10"
