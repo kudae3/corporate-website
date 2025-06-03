@@ -6,6 +6,7 @@ const routes = {
   Careers: "/careers",
   Projects: "/projects",
   Dashborard: "/dashboard",
+  History: "/history",
 };
 
 export default routes;
