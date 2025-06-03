@@ -3,6 +3,7 @@ import "../globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -17,15 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body>
-          <Navbar />
-          <div>
-            <div className="min-h-screen">{children}</div>
-          </div>
-          <Footer />
-        </body>
-      </html>
+      <AuthProvider>
+        <html lang="en">
+          <body>
+            <Navbar />
+            <div>
+              <div className="min-h-screen">{children}</div>
+            </div>
+            <Footer />
+          </body>
+        </html>
+      </AuthProvider>
     </ClerkProvider>
   );
 }

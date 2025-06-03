@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuthContext } from "@/context/AuthContext";
 import routes from "@/routes";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
@@ -33,6 +34,13 @@ const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  const authContext = useAuthContext();
+  const userData = authContext?.userData;
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   return (
     <header
@@ -115,6 +123,17 @@ const Navbar = () => {
                     Contact Us
                   </a>
                 </li>
+
+                {userData?.role === "admin" && (
+                  <li>
+                    <a
+                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                      href="#"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+                )}
               </ul>
             </nav>
           </div>

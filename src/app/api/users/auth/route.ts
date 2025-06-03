@@ -8,7 +8,7 @@ import { NextRequest } from "next/server";
 export const POST = async (request: NextRequest) => {
   try {
     await dbConnect();
-    const email = await request.json();
+    const { email } = await request.json();
     if (!email) {
       return errorResponse("Email is Required", null, 400);
     }
