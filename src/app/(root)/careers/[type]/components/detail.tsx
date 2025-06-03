@@ -90,35 +90,6 @@ const Detail = ({ career }: { career: Career }) => {
         </div>
       </div>
 
-      {/* Additional Information */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-          <h5 className="font-semibold text-gray-900 dark:text-white mb-2">
-            Posted Date
-          </h5>
-          <p className="text-gray-600 dark:text-gray-300">
-            {new Date(career.createdAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
-
-        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-          <h5 className="font-semibold text-gray-900 dark:text-white mb-2">
-            Last Updated
-          </h5>
-          <p className="text-gray-600 dark:text-gray-300">
-            {new Date(career.updatedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
-      </div>
-
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
         <Button className="flex-1 bg-primary hover:bg-primary/90 text-white">
@@ -127,11 +98,12 @@ const Detail = ({ career }: { career: Career }) => {
         <Button
           variant="outline"
           className="flex-1 border-secondary text-secondary hover:bg-secondary/10"
+          onClick={() => {
+            // Logic to save the job can be added here
+            alert(`Job "${career._id}" saved!`);
+          }}
         >
           Save Job
-        </Button>
-        <Button className="flex-1 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
-          Share
         </Button>
       </div>
     </div>

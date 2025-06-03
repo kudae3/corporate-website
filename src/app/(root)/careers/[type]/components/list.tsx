@@ -16,7 +16,7 @@ const List = ({
       onClick={onSelect}
       className={`relative p-4 rounded-lg cursor-pointer transition-all duration-200 border ${
         selected
-          ? "bg-gradient-to-r from-primary to-secondary text-white border-primary shadow-lg transform scale-[1.02]"
+          ? "bg-primary text-white border-primary shadow-lg transform scale-[1.02]"
           : "bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:border-primary hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-600"
       }`}
     >
@@ -69,15 +69,6 @@ const List = ({
         >
           {career.type}
         </span>
-      </div>
-
-      {/* Salary */}
-      <div
-        className={`font-semibold text-lg ${
-          selected ? "text-white" : "text-secondary"
-        }`}
-      >
-        {career.salary}
       </div>
 
       {/* Posted Date */}

@@ -14,16 +14,16 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Hide navbar after scrolling down 1200px
-      if (currentScrollY > 1200 && currentScrollY > lastScrollY) {
+      // Hide navbar after scrolling down 500px
+      if (currentScrollY > 500 && currentScrollY > lastScrollY) {
         setIsVisible(false);
       }
       // Show navbar immediately when scrolling up from any position
       else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
-      // Show navbar when at top (less than 1200px)
-      else if (currentScrollY <= 1200) {
+      // Show navbar when at top (less than 500px)
+      else if (currentScrollY <= 500) {
         setIsVisible(true);
       }
 
