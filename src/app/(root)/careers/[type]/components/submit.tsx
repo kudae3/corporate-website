@@ -4,57 +4,51 @@ import { Alert } from "@/app/(root)/components/AlertDialog";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
 import { Career } from "../../Types/career";
+import { FileUploader } from "@/components/upload/multi-file";
+import {
+  UploaderProvider,
+  type UploadFn,
+} from "@/components/upload/uploader-provider";
+import { useEdgeStore } from "@/lib/edgestore";
 
 const Submit = ({ career }: { career: Career }) => {
+  const [resumeURL, setResumeURL] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    resume: null as File | null,
     message: "",
     terms: false,
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
+  const { edgestore } = useEdgeStore();
 
-  // Validate form whenever formData changes
-  useEffect(() => {
-    const { fullName, email, resume, terms } = formData;
-    const isValid =
-      fullName.trim() !== "" &&
-      email.trim() !== "" &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && // Basic email validation
-      resume !== null &&
-      terms;
-
-    setIsFormValid(isValid);
-  }, [formData]);
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target;
-
-    if (type === "checkbox") {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({ ...prev, [name]: checked }));
-    } else if (type === "file") {
-      const file = (e.target as HTMLInputElement).files?.[0] || null;
-      setFormData((prev) => ({ ...prev, [name]: file }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
+  const uploadFn: UploadFn = React.useCallback(
+    async ({ file, onProgressChange, signal }) => {
+      const res = await edgestore.publicFiles.upload({
+        file,
+        signal,
+        onProgressChange,
+      });
+      // you can run some server action or api here
+      // to add the necessary data to your database
+      console.log(res);
+      if (res) {
+        setResumeURL(res.url);
+      }
+      return res;
+    },
+    [edgestore]
+  );
 
   const SubmitJob = (id: number) => {
     console.log(`Job Submitted to id: ${id}`);
-    console.log("Form data:", formData);
+    console.log("Form data:", { ...formData, resumeURL });
   };
 
   return (
     <Alert
       onAction={() => SubmitJob(career._id)}
       action="Submit"
-      btnDisabled={!isFormValid}
       trigger={
         <Button className="flex-1 bg-primary hover:bg-primary/90 text-white cursor-pointer">
           Apply Now
@@ -71,6 +65,7 @@ const Submit = ({ career }: { career: Career }) => {
           </p>
         </div>
 
+        {/* Form */}
         <form className="space-y-5">
           {/* Name Field */}
           <div>
@@ -85,8 +80,10 @@ const Submit = ({ career }: { career: Career }) => {
               id="fullName"
               name="fullName"
               required
+              onChange={(e) =>
+                setFormData({ ...formData, fullName: e.target.value })
+              }
               value={formData.fullName}
-              onChange={handleInputChange}
               placeholder="Enter your full name"
               className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />
@@ -105,8 +102,10 @@ const Submit = ({ career }: { career: Career }) => {
               id="email"
               name="email"
               required
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               value={formData.email}
-              onChange={handleInputChange}
               placeholder="your.email@example.com"
               className="w-full px-4 py-3  rounded-lg  focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />
@@ -120,20 +119,18 @@ const Submit = ({ career }: { career: Career }) => {
             >
               Resume/CV *
             </label>
-            <div className="relative">
-              <input
-                type="file"
+
+            <UploaderProvider uploadFn={uploadFn} autoUpload>
+              <FileUploader
                 id="resume"
-                name="resume"
-                accept=".pdf,.doc,.docx"
-                required
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary file:text-white hover:file:bg-primary/90 transition-colors"
+                maxFiles={1}
+                maxSize={1024 * 1024 * 5} // 5 MB
+                accept={{
+                  "application/pdf": [],
+                  "text/plain": [".txt"],
+                }}
               />
-            </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-              Accepted formats: PDF, DOC, DOCX (Max 5MB)
-            </p>
+            </UploaderProvider>
           </div>
 
           {/* Cover Letter/Message */}
@@ -149,7 +146,9 @@ const Submit = ({ career }: { career: Career }) => {
               name="message"
               rows={4}
               value={formData.message}
-              onChange={handleInputChange}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
               placeholder="Tell us why you're interested in this position and what makes you a great fit..."
               className="w-full px-4 py-3  rounded-lg focus:outline-none dark:bg-gray-700 dark:text-white placeholder-gray-400 resize-vertical transition-colors"
             ></textarea>
@@ -163,7 +162,9 @@ const Submit = ({ career }: { career: Career }) => {
               name="terms"
               required
               checked={formData.terms}
-              onChange={handleInputChange}
+              onChange={(e) =>
+                setFormData({ ...formData, terms: e.target.checked })
+              }
               className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
             />
             <label

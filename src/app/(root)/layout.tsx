@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <AuthProvider>
-        <EdgeStoreProvider>
+      <EdgeStoreProvider>
+        <AuthProvider>
           <html lang="en">
             <body>
               <Navbar />
@@ -30,8 +30,8 @@ export default function RootLayout({
               <Footer />
             </body>
           </html>
-        </EdgeStoreProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </EdgeStoreProvider>
     </ClerkProvider>
   );
 }
