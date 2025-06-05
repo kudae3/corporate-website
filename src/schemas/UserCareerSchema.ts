@@ -6,5 +6,5 @@ export const UserCareerSchema = z.object({
   resume: z.string().min(10, "Resume must be at least 10 characters long"),
   coverLetter: z
     .string()
-    .min(1, "Cover letter must be at least 10 characters long"),
+    .min(10, "Cover letter must be at least 10 characters long"),
 });
