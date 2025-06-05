@@ -1,6 +1,6 @@
 "user client";
 import { Alert } from "@/app/(root)/components/AlertDialog";
-import EditIcon from "@/components/atoms/edit";
+import EditIcon from "@/components/atoms/editIcon";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
