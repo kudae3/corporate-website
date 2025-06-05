@@ -4,10 +4,6 @@ export interface IUser {
   clerkId: string;
   username?: string;
   email: string;
-  password?: string;
-  phone?: string;
-  address?: string;
-  avatar?: string;
   role?: "user" | "admin";
 }
 
@@ -27,19 +23,6 @@ const UserSchema = new Schema<IuserDoc>(
       type: String,
       required: true,
       unique: true,
-    },
-    password: {
-      type: String,
-    },
-    phone: {
-      type: String,
-    },
-    address: {
-      type: String,
-    },
-    avatar: {
-      type: String,
-      default: "/public/default.jpg",
     },
     role: {
       type: String,

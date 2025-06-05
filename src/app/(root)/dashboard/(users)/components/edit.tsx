@@ -1,10 +1,14 @@
 "user client";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import EditIcon from "@/components/atoms/edit";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Edit = ({ user }: { user: any }) => {
+  const router = useRouter();
   const [formData, setFormData] = React.useState({
+    clerkId: user?.clerkId || "",
     username: user?.username || "",
     email: user?.email || "",
     role: user?.role || "user",
@@ -12,7 +16,15 @@ const Edit = ({ user }: { user: any }) => {
 
   const Confirm = () => {
     console.log("Updating user with data:", formData);
-    // Here you would typically call an API to update the user
+    axios
+      .patch("http://localhost:3000/api/users", formData)
+      .then((resposne) => {
+        router.refresh();
+        console.log("User updated successfully:", resposne.data);
+      })
+      .catch((e) => {
+        console.log("Failed to update user", e.response?.data || e.message);
+      });
   };
 
   return (
@@ -59,12 +71,10 @@ const Edit = ({ user }: { user: any }) => {
             id="email"
             name="email"
             required
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
+            disabled
             value={formData.email}
             placeholder="Enter the email"
-            className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-800 dark:text-white placeholder-gray-400 transition-colors"
           />
         </div>
         <div>
