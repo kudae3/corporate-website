@@ -13,16 +13,12 @@ export default async function RootLayout({
     );
   }
   return (
-    <html lang="en">
-      <body>
-        <div>
-          <div className="min-h-screen container">
-            <div className="flex justify-center items-start">
-              <SideBar /> {children}
-            </div>
-          </div>
+    <div>
+      <div className="min-h-screen container">
+        <div className="flex justify-center items-start">
+          <SideBar /> {children}
         </div>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }
