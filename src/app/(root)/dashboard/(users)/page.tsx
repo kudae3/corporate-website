@@ -2,7 +2,7 @@ import dbConnect from "@/database/dbConnect";
 import User from "@/models/user.model";
 import { authUser } from "@/lib/auth";
 import Actions from "./components/actions";
-import Add from "./components/add";
+import Add from "../careers/components/add";
 
 const page = async () => {
   await dbConnect();
@@ -30,8 +30,6 @@ const page = async () => {
       </div>
 
       <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">
-        <Add />
-
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full">
