@@ -1,5 +1,6 @@
 import { isAdmin } from "@/lib/isAdmin";
 import SideBar from "./components/SideBar";
+import { notFound } from "next/navigation";
 
 export default async function RootLayout({
   children,
@@ -7,11 +8,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const admin = await isAdmin();
-  if (!admin) {
-    return (
-      <div className="container">You are not authorized to view this page</div>
-    );
-  }
+  if (!admin) notFound();
   return (
     <div>
       <div className="min-h-screen container">
