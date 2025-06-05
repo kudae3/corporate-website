@@ -2,7 +2,7 @@
 
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import { Button } from "@/components/ui/button";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Career } from "../../Types/career";
 import { FileUploader } from "@/components/upload/multi-file";
 import {
@@ -10,6 +10,8 @@ import {
   type UploadFn,
 } from "@/components/upload/uploader-provider";
 import { useEdgeStore } from "@/lib/edgestore";
+import { useAuthContext } from "@/context/AuthContext";
+import axios from "axios";
 
 const Submit = ({ career }: { career: Career }) => {
   const [resumeURL, setResumeURL] = useState<string | null>(null);
@@ -22,6 +24,7 @@ const Submit = ({ career }: { career: Career }) => {
 
   const { edgestore } = useEdgeStore();
 
+  // edgeStore's function to upload files
   const uploadFn: UploadFn = React.useCallback(
     async ({ file, onProgressChange, signal }) => {
       const res = await edgestore.publicFiles.upload({
@@ -40,9 +43,32 @@ const Submit = ({ career }: { career: Career }) => {
     [edgestore]
   );
 
+  // auth User data
+  const auth = useAuthContext();
+  const userData = auth?.userData;
+
   const SubmitJob = (id: number) => {
     console.log(`Job Submitted to id: ${id}`);
     console.log("Form data:", { ...formData, resumeURL });
+
+    const userId = userData?._id || "";
+    const careerId = career._id || "";
+    const resume = resumeURL || "";
+    const coverLetter = formData.message || "";
+
+    axios
+      .post("http://localhost:3000/api/careers/apply", {
+        userId,
+        careerId,
+        resume,
+        coverLetter,
+      })
+      .then((response) => {
+        console.log("Application submitted successfully", response.data);
+      })
+      .catch(() => {
+        console.error("Error submitting application");
+      });
   };
 
   return (
@@ -139,7 +165,7 @@ const Submit = ({ career }: { career: Career }) => {
               htmlFor="message"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
-              Cover Letter / Message
+              Cover Letter / Message *
             </label>
             <textarea
               id="message"
