@@ -1,40 +1,43 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Actions from "./actions";
 import axios from "axios";
 import { UserType } from "@/app/(root)/careers/Types/user";
+import { useQuery } from "@tanstack/react-query";
 import { useAuthContext } from "@/context/AuthContext";
 
 const Table = () => {
-  const [users, setUsers] = React.useState<UserType[]>([]);
-
   // auth User
   const authContext = useAuthContext();
   const userData = authContext?.userData;
 
-  useEffect(() => {
-    if (!userData) return;
-    const fetchUsers = () => {
-      axios
-        .get("http://localhost:3000/api/users")
-        .then((response) => {
-          const allUsers = response.data.data;
-          console.log("All Users:", allUsers);
+  const fetchUsers = async (): Promise<UserType[]> => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/users");
+      const allUsers = response.data.data;
+      console.log("All Users:", allUsers);
 
-          const users = allUsers.filter((user: UserType) => {
-            return user?._id !== userData?._id;
-          });
-          console.log("Filtered Users:", users);
+      const users = allUsers.filter((user: UserType) => {
+        return user?._id !== userData?._id;
+      });
+      console.log("Filtered Users:", users);
 
-          setUsers(users);
-        })
-        .catch((e) => {
-          console.error("Error fetching users", e.message);
-        });
-    };
-    fetchUsers();
-  }, [userData]);
+      return users;
+    } catch (e: any) {
+      console.log("Error fetching users", e.message);
+      return [];
+    }
+  };
+
+  // Queries
+  const { data: users = [], isLoading } = useQuery<UserType[]>({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+    enabled: !!userData?._id, // run only if userData id is available
+  });
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">

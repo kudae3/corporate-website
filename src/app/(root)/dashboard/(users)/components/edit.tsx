@@ -2,12 +2,12 @@
 import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import EditIcon from "@/components/atoms/editIcon";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const Edit = ({ user }: { user: UserType }) => {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const [formData, setFormData] = React.useState({
     clerkId: user?.clerkId || "",
     username: user?.username || "",
@@ -15,17 +15,20 @@ const Edit = ({ user }: { user: UserType }) => {
     role: user?.role || "user",
   });
 
+  // Mutations for updating user
+  const mutation = useMutation({
+    mutationFn: (data: typeof formData) =>
+      axios.patch("http://localhost:3000/api/users", data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+    onError: (error) => {
+      console.log("Failed to update user", error);
+    },
+  });
+
   const Confirm = () => {
-    console.log("Updating user with data:", formData);
-    axios
-      .patch("http://localhost:3000/api/users", formData)
-      .then((resposne) => {
-        router.refresh();
-        console.log("User updated successfully:", resposne.data);
-      })
-      .catch((e) => {
-        console.log("Failed to update user", e.response?.data || e.message);
-      });
+    mutation.mutate(formData);
   };
 
   return (

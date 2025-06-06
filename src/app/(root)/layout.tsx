@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AuthProvider } from "@/context/AuthContext";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import QueryProvider from "@/context/QueryProvider";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -19,19 +20,21 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <EdgeStoreProvider>
-        <AuthProvider>
-          <html lang="en">
-            <body>
-              <Navbar />
-              <div>
-                <div className="min-h-screen">{children}</div>
-              </div>
-              <Footer />
-            </body>
-          </html>
-        </AuthProvider>
-      </EdgeStoreProvider>
+      <QueryProvider>
+        <EdgeStoreProvider>
+          <AuthProvider>
+            <html lang="en">
+              <body>
+                <Navbar />
+                <div>
+                  <div className="min-h-screen">{children}</div>
+                </div>
+                <Footer />
+              </body>
+            </html>
+          </AuthProvider>
+        </EdgeStoreProvider>
+      </QueryProvider>
     </ClerkProvider>
   );
 }
