@@ -1,11 +1,12 @@
 "user client";
+import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import EditIcon from "@/components/atoms/editIcon";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const Edit = ({ user }: { user: any }) => {
+const Edit = ({ user }: { user: UserType }) => {
   const router = useRouter();
   const [formData, setFormData] = React.useState({
     clerkId: user?.clerkId || "",
