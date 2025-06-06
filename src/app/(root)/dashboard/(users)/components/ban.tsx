@@ -1,11 +1,11 @@
 "use client";
+import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import BanIcon from "@/components/atoms/banIcon";
-import { clerkClient } from "@clerk/nextjs/server";
 import axios from "axios";
 import React from "react";
 
-const Ban = ({ user }: { user: any }) => {
+const Ban = ({ user }: { user: UserType }) => {
   const BanUser = () => {
     console.log(`Banning user: ${user?.clerkId}`);
     const clerkId = user?.clerkId;
