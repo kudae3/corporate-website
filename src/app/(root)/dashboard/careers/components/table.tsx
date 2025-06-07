@@ -21,7 +21,7 @@ const Table = () => {
     }
   };
 
-  //   queries
+  // queries
   const { data: careers, isLoading } = useQuery<CareerType[]>({
     queryKey: ["careers"],
     queryFn: getCareers,
@@ -91,8 +91,8 @@ const Table = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                     <div className="flex space-x-2">
-                      <Edit />
-                      <Delete />
+                      <Edit career={career} />
+                      <Delete career={career} />
                     </div>
                   </td>
                 </tr>

@@ -8,5 +8,4 @@ export type CareerType = {
   salary: string;
   createdAt: string;
   updatedAt: string;
-  postedBy: string;
 };

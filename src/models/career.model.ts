@@ -7,7 +7,6 @@ export interface ICareer {
   description: string;
   requirements: string;
   salary?: string;
-  postedBy: Schema.Types.ObjectId;
 }
 export interface ICareerDoc extends ICareer, Document {}
 
@@ -36,11 +35,6 @@ const CareerSchema = new Schema<ICareerDoc>(
     },
     salary: {
       type: String,
-    },
-    postedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
     },
   },
   { timestamps: true }
