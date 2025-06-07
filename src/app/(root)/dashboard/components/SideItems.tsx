@@ -1,6 +1,7 @@
 "use client";
 
 import BlcokIcon from "@/components/icons/BlockIcon";
+import { JobIcon } from "@/components/icons/JobIcon";
 import UsersIcon from "@/components/icons/UsersIcon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,6 +28,14 @@ const SideItems = () => {
       >
         <BlcokIcon />
         Block List
+      </Link>
+      <Link
+        href="/dashboard/careers"
+        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
+          ${pathName === "/dashboard/careers" ? "bg-primary" : ""}`}
+      >
+        <JobIcon />
+        Careers
       </Link>
     </nav>
   );

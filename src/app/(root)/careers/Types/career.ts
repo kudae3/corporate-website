@@ -1,5 +1,5 @@
-export type Career = {
-  _id: number;
+export type CareerType = {
+  _id: string;
   title: string;
   location: string;
   type: "part-time" | "full-time" | "internship";

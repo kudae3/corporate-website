@@ -30,7 +30,7 @@ export const Table = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (!users || users.length === 0) return <div>No Unbanned users</div>;
+  if (!users || users.length === 0) return <div>No banned users</div>;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">
