@@ -2,21 +2,31 @@
 import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import BanUserIcon from "@/components/icons/BanUserIcon";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 
 const Ban = ({ user }: { user: UserType }) => {
+  const queryClient = useQueryClient();
+
+  // Mutations for banning user
+  const mutation = useMutation({
+    mutationFn: (data: any) => {
+      return axios.post("http://localhost:3000/api/users/ban", {
+        clerkId: data,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+    onError: (error) => {
+      console.log("Failed to ban user", error);
+    },
+  });
+
   const BanUser = () => {
     console.log(`Banning user: ${user?.clerkId}`);
-    const clerkId = user?.clerkId;
-    axios
-      .post("http://localhost:3000/api/users/ban", { clerkId })
-      .then(() => {
-        console.log("User banned successfully");
-      })
-      .catch((error) => {
-        console.error("Error banning user:", error);
-      });
+    mutation.mutate(user?.clerkId);
   };
   return (
     <Alert

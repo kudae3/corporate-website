@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const client = await clerkClient();
     const response = await client.users.unbanUser(clerkId);
-    return successResponse("User banned successfully", response, 200);
+    return successResponse("User unbanned successfully", response, 200);
   } catch (error) {
     return errorResponse("Failed to ban user", error, 500);
   }

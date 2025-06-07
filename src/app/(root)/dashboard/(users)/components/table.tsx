@@ -19,7 +19,9 @@ const Table = () => {
       console.log("All Users:", allUsers);
 
       const users = allUsers.filter((user: UserType) => {
-        return user?._id !== userData?._id;
+        return (
+          user?._id !== userData?._id && user?.clerkProfile?.banned === false
+        );
       });
       console.log("Filtered Users:", users);
 
@@ -38,6 +40,8 @@ const Table = () => {
   });
 
   if (isLoading) return <div>Loading...</div>;
+
+  if (!users || users.length === 0) return <div>No Users found</div>;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">

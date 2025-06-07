@@ -30,12 +30,16 @@ export const Table = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
+  if (!users || users.length === 0) return <div>No Unbanned users</div>;
+
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">
       {/* Table */}
+
       <div className="overflow-x-auto">
         <table className="w-full">
           {/* Table Header */}
+
           <thead className="">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
