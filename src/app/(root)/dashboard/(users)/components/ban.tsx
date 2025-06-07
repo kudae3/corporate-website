@@ -1,7 +1,7 @@
 "use client";
 import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
-import BanIcon from "@/components/atoms/banIcon";
+import BanUserIcon from "@/components/icons/BanUserIcon";
 import axios from "axios";
 import React from "react";
 
@@ -25,7 +25,7 @@ const Ban = ({ user }: { user: UserType }) => {
       onAction={BanUser}
       trigger={
         <button className="text-red-600 hover:text-red-900 cursor-pointer">
-          <BanIcon />
+          <BanUserIcon />
         </button>
       }
     >

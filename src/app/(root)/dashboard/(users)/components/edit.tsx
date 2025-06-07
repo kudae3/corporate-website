@@ -1,9 +1,9 @@
 "user client";
 import { UserType } from "@/app/(root)/careers/Types/user";
 import { Alert } from "@/app/(root)/components/AlertDialog";
-import EditIcon from "@/components/atoms/editIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { EditIcon } from "lucide-react";
 import React from "react";
 
 const Edit = ({ user }: { user: UserType }) => {
