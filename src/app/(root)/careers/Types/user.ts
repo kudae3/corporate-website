@@ -7,4 +7,7 @@ export type UserType = {
   createdAt: string;
   updatedAt: string;
   avatar?: string;
+  clerkProfile?: {
+    banned: boolean;
+  };
 };
