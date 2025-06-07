@@ -12,7 +12,7 @@ export default async function RootLayout({
   return (
     <div>
       <div className="min-h-screen container">
-        <div className="flex justify-center items-start">
+        <div className="flex items-start space-x-10">
           <SideBar /> {children}
         </div>
       </div>
