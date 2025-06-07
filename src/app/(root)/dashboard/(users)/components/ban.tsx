@@ -26,6 +26,10 @@ const Ban = ({ user }: { user: UserType }) => {
 
   const BanUser = () => {
     console.log(`Banning user: ${user?.clerkId}`);
+    if (user?.role === "admin") {
+      console.log("Cannot ban an admin user");
+      return;
+    }
     mutation.mutate(user?.clerkId);
   };
   return (

@@ -6,10 +6,10 @@ import { UserType } from "@/app/(root)/careers/Types/user";
 
 const Actions = ({ user }: { user: UserType }) => {
   return (
-    <>
+    <div className="space-x-2">
       <Edit user={user} />
-      <Ban user={user} />
-    </>
+      {user?.role !== "admin" && <Ban user={user} />}
+    </div>
   );
 };
 
