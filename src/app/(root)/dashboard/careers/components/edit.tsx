@@ -1,5 +1,6 @@
 import { CareerType } from "@/app/(root)/careers/Types/career";
 import { Alert } from "@/app/(root)/components/AlertDialog";
+import TextEditor from "@/components/editor/TextEditor";
 import EditIcon from "@/components/icons/EditIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -47,7 +48,7 @@ const Edit = ({ career }: { career: CareerType }) => {
         </button>
       }
     >
-      <form action="" method="post" className="space-y-5">
+      <form action="" method="post" className="space-y-5 overflow-y-auto">
         {/* title */}
         <div>
           <label
@@ -166,17 +167,13 @@ const Edit = ({ career }: { career: CareerType }) => {
           >
             requirements *
           </label>
-          <input
-            type="requirements"
-            id="requirements"
-            name="requirements"
+
+          <TextEditor
             required
-            onChange={(e) =>
-              setFormData({ ...formData, requirements: e.target.value })
-            }
             value={formData.requirements}
-            placeholder="Enter the description"
-            className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            onChange={(value) =>
+              setFormData({ ...formData, requirements: value })
+            }
           />
         </div>
       </form>
