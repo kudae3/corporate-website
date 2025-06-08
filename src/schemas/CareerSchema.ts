@@ -7,7 +7,7 @@ const careerSchema = z.object({
       message: "Type must be one of full-time, part-time, or internship",
     }),
   }),
-  location: z.string().min(10, "Location must be at least 10 characters long"),
+  location: z.string().min(1, "Location must be at least 1 characters long"),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters long"),

@@ -1,100 +1,187 @@
 "use client";
+
+import { CareerType } from "@/app/(root)/careers/Types/career";
 import { Alert } from "@/app/(root)/components/AlertDialog";
-import React from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useState } from "react";
 
 const Add = () => {
-  const [formData, setFormData] = React.useState({
-    username: "",
-    email: "",
-    role: "user", // default role
+  const [formData, setFormData] = useState({
+    title: "",
+    location: "",
+    type: "full-time" as CareerType["type"],
+    description: "",
+    requirements: "",
+    salary: "",
   });
 
-  const Create = () => {
-    console.log("Creating user with data:", formData);
-    // call api
-  };
+  const queryClient = useQueryClient();
 
+  // mutation function
+  const mutation = useMutation({
+    mutationFn: (data: typeof formData) => {
+      return axios.post("http://localhost:3000/api/careers", data);
+    },
+    onSuccess: () => {
+      console.log("Career added successfully");
+      queryClient.invalidateQueries({ queryKey: ["careers"] });
+      // Optionally, you can reset the form or refetch data here
+    },
+    onError: (error) => {
+      console.error("Failed to add career", error);
+    },
+  });
+
+  const handleSubmit = () => {
+    console.log("Career data to be added:", formData);
+    mutation.mutate(formData);
+  };
   return (
-    <div className="px-6 py-4 border-b border-gray-200">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium text-white">Users</h3>
-        <Alert
-          title="Create a New User"
-          action="Add User"
-          onAction={Create}
-          trigger={
-            <button className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-teal-700">
-              Add User
-            </button>
-          }
-        >
-          <form action="" method="post" className="space-y-5">
-            <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                Username *
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                required
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
-                value={formData.username}
-                placeholder="Enter the username"
-                className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                value={formData.email}
-                placeholder="Enter the email"
-                className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
-              />
-            </div>
-            <div>
-              <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Admin
-              </span>
-              <label
-                htmlFor="role"
-                className="relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500 dark:bg-gray-600 dark:has-checked:bg-green-600"
-              >
-                <input
-                  type="checkbox"
-                  id="role"
-                  checked={formData.role === "admin"}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      role: e.target.checked ? "admin" : "user",
-                    })
-                  }
-                  className="peer sr-only"
-                />
-                <span className="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-white transition-[inset-inline-start] peer-checked:start-6 dark:bg-gray-900"></span>
-              </label>
-            </div>
-          </form>
-        </Alert>
-      </div>
+    <div>
+      <Alert
+        title="Add Career"
+        action="Confirm"
+        onAction={handleSubmit}
+        trigger={
+          <button className="px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-800 cursor-pointer">
+            Add Career
+          </button>
+        }
+      >
+        <form action="" method="post" className="space-y-5">
+          {/* title */}
+          <div>
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              Title *
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+              value={formData.title}
+              placeholder="Enter the title"
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            />
+          </div>
+          {/* location */}
+          <div>
+            <label
+              htmlFor="location"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              Location *
+            </label>
+            <input
+              type="location"
+              id="location"
+              name="location"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, location: e.target.value })
+              }
+              value={formData.location}
+              placeholder="Enter the location"
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            />
+          </div>
+          {/* type */}
+          <div>
+            <label
+              htmlFor="type"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              Type *
+            </label>
+            <select
+              id="type"
+              name="type"
+              required
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  type: e.target.value as CareerType["type"],
+                })
+              }
+              value={formData.type}
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            >
+              <option value="full-time">Full-Time</option>
+              <option value="part-time">Part-Time</option>
+              <option value="internship">Internship</option>
+            </select>
+          </div>
+          {/* description */}
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              description *
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+              value={formData.description}
+              placeholder="Enter the description"
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            />
+          </div>
+          {/* salary */}
+          <div>
+            <label
+              htmlFor="salary"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              salary *
+            </label>
+            <input
+              type="salary"
+              id="salary"
+              name="salary"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, salary: e.target.value })
+              }
+              value={formData.salary}
+              placeholder="Enter the description"
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            />
+          </div>
+          {/* requirements */}
+          <div>
+            <label
+              htmlFor="requirements"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              requirements *
+            </label>
+            <input
+              type="requirements"
+              id="requirements"
+              name="requirements"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, requirements: e.target.value })
+              }
+              value={formData.requirements}
+              placeholder="Enter the description"
+              className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
+            />
+          </div>
+        </form>
+      </Alert>
     </div>
   );
 };

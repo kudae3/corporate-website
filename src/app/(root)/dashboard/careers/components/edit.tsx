@@ -122,7 +122,7 @@ const Edit = ({ career }: { career: CareerType }) => {
             htmlFor="description"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            description" *
+            description *
           </label>
           <input
             type="description"
