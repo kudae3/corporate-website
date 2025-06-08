@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { AuthProvider } from "@/context/AuthContext";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import QueryProvider from "@/context/QueryProvider";
+import { authUser } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -13,11 +14,14 @@ export const metadata: Metadata = {
     "Digital Tide - Your Gateway to the Advance your business with Technology",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const auth = await authUser();
+  console.log("Auth user:", auth);
+
   return (
     <ClerkProvider>
       <QueryProvider>
@@ -25,7 +29,7 @@ export default function RootLayout({
           <AuthProvider>
             <html lang="en">
               <body>
-                <Navbar />
+                <Navbar auth={auth} />
                 <div>
                   <div className="min-h-screen">{children}</div>
                 </div>

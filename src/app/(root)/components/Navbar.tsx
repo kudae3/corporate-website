@@ -1,12 +1,12 @@
 "use client";
 
-import { useAuthContext } from "@/context/AuthContext";
 import routes from "@/routes";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { UserType } from "../careers/Types/user";
 
-const Navbar = () => {
+const Navbar = ({ auth }: { auth: UserType }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -34,13 +34,6 @@ const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  const authContext = useAuthContext();
-  const userData = authContext?.userData;
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   return (
     <header
@@ -124,7 +117,7 @@ const Navbar = () => {
                   </a>
                 </li>
 
-                {userData?.role === "admin" && (
+                {auth?.role === "admin" && (
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"

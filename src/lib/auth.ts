@@ -11,6 +11,6 @@ export const authUser = async () => {
   if (!email) return null;
   const authUser = await User.findOne({ email });
   if (!authUser) return null;
-
-  return authUser;
+  const data = JSON.parse(JSON.stringify(authUser));
+  return data;
 };
