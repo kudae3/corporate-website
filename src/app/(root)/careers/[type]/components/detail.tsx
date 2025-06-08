@@ -1,9 +1,9 @@
 import React from "react";
-import { Career } from "../../Types/career";
 import { Button } from "@/components/ui/button";
 import Submit from "./submit";
+import { CareerType } from "../../Types/career";
 
-const Detail = ({ career }: { career: Career }) => {
+const Detail = ({ career }: { career: CareerType }) => {
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -85,9 +85,10 @@ const Detail = ({ career }: { career: Career }) => {
           Job Requirements
         </h4>
         <div className="prose prose-gray dark:prose-invert max-w-none">
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-            {career.requirements}
-          </p>
+          <div
+            dangerouslySetInnerHTML={{ __html: career.requirements }}
+            className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line"
+          />
         </div>
       </div>
 
