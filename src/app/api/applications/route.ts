@@ -10,7 +10,9 @@ import "@/models/user.model.ts";
 export const GET = async () => {
   try {
     await dbConnect();
-    const applications = await Application.find().populate("userId careerId");
+    const applications = await Application.find({ deletedAt: null }).populate(
+      "userId careerId"
+    );
 
     // Rename userId to user and careerId to career
     const formattedApplications = applications.map((app) => {
@@ -51,7 +53,7 @@ export const POST = async (request: NextRequest) => {
     }
 
     // store at database
-    const newApplication = new Application(parsed.data);
+    const newApplication = new Application({ ...parsed.data, deletedAt: null });
     await newApplication.populate("userId careerId");
     await newApplication.save();
 

@@ -14,7 +14,7 @@ const Delete = ({ application }: { application: ApplicationType }) => {
       return axios.delete("http://localhost:3000/api/applications/" + id);
     },
     onSuccess: () => {
-      console.log("Application deleted successfully");
+      console.log("Application deleted successfully from frontend");
       queryClient.invalidateQueries({ queryKey: ["applications"] });
     },
     onError: (error) => {

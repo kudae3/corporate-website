@@ -5,6 +5,7 @@ export interface IApplication {
   careerId: Schema.Types.ObjectId;
   resume: string;
   coverLetter: string;
+  deletedAt?: Date | null;
 }
 
 export interface IApplicationDoc extends IApplication, Document {}
@@ -29,9 +30,15 @@ const ApplicationSchema = new Schema<IApplicationDoc>(
       type: String,
       required: true,
     },
+    deletedAt: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );
+
+ApplicationSchema.index({ deletedAt: 1 }, { expireAfterSeconds: 2592000 }); // 30 days
 
 const Application =
   models.Application ||

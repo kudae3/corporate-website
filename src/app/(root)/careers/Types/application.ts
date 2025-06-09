@@ -7,4 +7,5 @@ export type ApplicationType = {
   coverLetter: string;
   user?: UserType;
   career?: CareerType;
+  deletedAt?: Date | null;
 };

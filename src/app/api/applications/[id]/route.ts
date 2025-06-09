@@ -28,8 +28,18 @@ export const DELETE = async (
         404
       );
     }
-    await Application.findByIdAndDelete(id);
-    return successResponse("Application deleted successfully", null, 200);
+
+    // soft delete the application
+    const result = await Application.findByIdAndUpdate(id, {
+      deletedAt: new Date(),
+    });
+    console.log("Soft Delete Result:", result);
+
+    return successResponse(
+      "Application deleted successfully from backend",
+      null,
+      200
+    );
   } catch (error) {
     return errorResponse("Failed to delete application", error, 500);
   }
