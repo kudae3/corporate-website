@@ -3,7 +3,6 @@
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import { Career } from "../../Types/career";
 import { FileUploader } from "@/components/upload/multi-file";
 import {
   UploaderProvider,
@@ -12,8 +11,9 @@ import {
 import { useEdgeStore } from "@/lib/edgestore";
 import { useAuthContext } from "@/context/AuthContext";
 import axios from "axios";
+import { CareerType } from "../../Types/career";
 
-const Submit = ({ career }: { career: Career }) => {
+const Submit = ({ career }: { career: CareerType }) => {
   const [resumeURL, setResumeURL] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -47,9 +47,10 @@ const Submit = ({ career }: { career: Career }) => {
   const auth = useAuthContext();
   const userData = auth?.userData;
 
-  const SubmitJob = (id: number) => {
+  const SubmitJob = (id: CareerType["_id"]) => {
     console.log(`Job Submitted to id: ${id}`);
     console.log("Form data:", { ...formData, resumeURL });
+    console.log("User data:", userData);
 
     const userId = userData?._id || "";
     const careerId = career._id || "";
@@ -67,7 +68,7 @@ const Submit = ({ career }: { career: Career }) => {
         console.log("Application submitted successfully", response.data);
       })
       .catch(() => {
-        console.error("Error submitting application");
+        console.log("Error submitting application");
       });
   };
 
@@ -128,10 +129,8 @@ const Submit = ({ career }: { career: Career }) => {
               id="email"
               name="email"
               required
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              value={formData.email}
+              disabled
+              value={userData?.email}
               placeholder="your.email@example.com"
               className="w-full px-4 py-3  rounded-lg  focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />
