@@ -4,7 +4,6 @@ import { CareerType } from "@/app/(root)/careers/Types/career";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { Unban } from "../../block-list/components/unban";
 import Edit from "./edit";
 import Delete from "./delete";
 

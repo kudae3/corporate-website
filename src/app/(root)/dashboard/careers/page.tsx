@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "./components/table";
 import Add from "./components/add";
+import { Filter } from "./components/filter";
 
 const page = () => {
   return (
@@ -12,7 +13,8 @@ const page = () => {
           </h1>
           <p className="dark:text-gray-400">Manage and view all careerss</p>
         </div>
-        <div>
+        <div className="flex items-center gap-2">
+          <Filter />
           <Add />
         </div>
       </div>

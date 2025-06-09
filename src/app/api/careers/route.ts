@@ -5,11 +5,24 @@ import Career from "@/models/career.model";
 import careerSchema from "@/schemas/CareerSchema";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
   try {
     await dbConnect();
-    const careers = await Career.find();
-    return successResponse("careers fetched successfully", careers, 200);
+
+    const { searchParams } = new URL(request.url);
+    const search = searchParams.get("type") || "";
+
+    if (!search) {
+      const careers = await Career.find();
+      return successResponse("careers fetched successfully", careers, 200);
+    }
+
+    const careers = await Career.find({ type: search });
+    return successResponse(
+      `${search} careers fetched successfully`,
+      careers,
+      200
+    );
   } catch (error) {
     return errorResponse("Failed to fetch careers", error, 500);
   }
