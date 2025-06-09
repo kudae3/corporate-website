@@ -1,8 +1,8 @@
 import dbConnect from "@/database/dbConnect";
 import errorResponse from "@/lib/responses/errorResponse";
 import successResponse from "@/lib/responses/successResponse";
-import UserCareer from "@/models/user_career.model";
-import { UserCareerSchema } from "@/schemas/UserCareerSchema";
+import Application from "@/models/application.model";
+import { ApplicationSchema } from "@/schemas/ApplicationSchema";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
@@ -11,7 +11,7 @@ export const POST = async (request: NextRequest) => {
     const body = await request.json();
 
     // Validation with Zod
-    const parsed = UserCareerSchema.safeParse(body);
+    const parsed = ApplicationSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
         {
@@ -24,7 +24,7 @@ export const POST = async (request: NextRequest) => {
     }
 
     // store at database
-    const newApplication = new UserCareer(parsed.data);
+    const newApplication = new Application(parsed.data);
     await newApplication.populate("userId careerId");
     await newApplication.save();
 

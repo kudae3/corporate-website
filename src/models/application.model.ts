@@ -1,15 +1,15 @@
 import { model, models, Schema } from "mongoose";
 
-export interface IUserCareer {
+export interface IApplication {
   userId: Schema.Types.ObjectId;
   careerId: Schema.Types.ObjectId;
   resume: string;
   coverLetter: string;
 }
 
-export interface IUserCareerDoc extends IUserCareer, Document {}
+export interface IApplicationDoc extends IApplication, Document {}
 
-const UserCareerSchema = new Schema<IUserCareerDoc>(
+const ApplicationSchema = new Schema<IApplicationDoc>(
   {
     userId: {
       type: Schema.Types.ObjectId,
@@ -33,6 +33,7 @@ const UserCareerSchema = new Schema<IUserCareerDoc>(
   { timestamps: true }
 );
 
-const UserCareer =
-  models.UserCareer || model<IUserCareerDoc>("UserCareer", UserCareerSchema);
-export default UserCareer;
+const Application =
+  models.Application ||
+  model<IApplicationDoc>("Application", ApplicationSchema);
+export default Application;

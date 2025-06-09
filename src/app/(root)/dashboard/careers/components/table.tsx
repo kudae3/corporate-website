@@ -9,7 +9,7 @@ import Delete from "./delete";
 import { useCareerStore } from "@/lib/store/careerFilterStore";
 
 const Table = () => {
-  const { type } = useCareerStore();
+  const { type = "" } = useCareerStore();
   const queryType = type === "all" ? "" : type;
 
   const getCareers = async (): Promise<CareerType[]> => {
@@ -29,7 +29,7 @@ const Table = () => {
 
   // queries
   const { data: careers, isLoading } = useQuery<CareerType[]>({
-    queryKey: ["careers", type],
+    queryKey: ["careers", queryType],
     queryFn: getCareers,
   });
   if (isLoading) return <div>Loading...</div>;
