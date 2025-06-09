@@ -107,10 +107,8 @@ const Submit = ({ career }: { career: CareerType }) => {
               id="fullName"
               name="fullName"
               required
-              onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
-              }
-              value={formData.fullName}
+              disabled
+              value={userData?.username}
               placeholder="Enter your full name"
               className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />

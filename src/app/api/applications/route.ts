@@ -4,6 +4,33 @@ import successResponse from "@/lib/responses/successResponse";
 import Application from "@/models/application.model";
 import { ApplicationSchema } from "@/schemas/ApplicationSchema";
 import { NextRequest, NextResponse } from "next/server";
+import "@/models/career.model.ts"; // make sure this file registers the Career model
+import "@/models/user.model.ts";
+
+export const GET = async () => {
+  try {
+    await dbConnect();
+    const applications = await Application.find().populate("userId careerId");
+
+    // Rename userId to user and careerId to career
+    const formattedApplications = applications.map((app) => {
+      const appObj = app.toObject();
+      appObj.user = appObj.userId;
+      delete appObj.userId;
+      appObj.career = appObj.careerId;
+      delete appObj.careerId;
+      return appObj;
+    });
+
+    return successResponse(
+      "Sucessfully fetched applations",
+      formattedApplications,
+      200
+    );
+  } catch (error) {
+    return errorResponse("Error fetching applications", error, 500);
+  }
+};
 
 export const POST = async (request: NextRequest) => {
   try {
