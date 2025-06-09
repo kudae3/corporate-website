@@ -86,9 +86,7 @@ const Table = () => {
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <div className="flex space-x-2">
-                      <Delete application={application} />
-                    </div>
+                    <Delete application={application} />
                   </td>
                 </tr>
               ))}

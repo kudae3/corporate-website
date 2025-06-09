@@ -4,7 +4,7 @@ import successResponse from "@/lib/responses/successResponse";
 import Application from "@/models/application.model";
 import { ApplicationSchema } from "@/schemas/ApplicationSchema";
 import { NextRequest, NextResponse } from "next/server";
-import "@/models/career.model.ts"; // make sure this file registers the Career model
+import "@/models/career.model.ts";
 import "@/models/user.model.ts";
 
 export const GET = async () => {
