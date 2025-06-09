@@ -6,11 +6,18 @@ import axios from "axios";
 import React from "react";
 import Edit from "./edit";
 import Delete from "./delete";
+import { useCareerStore } from "@/lib/store/careerFilterStore";
 
 const Table = () => {
+  const { type } = useCareerStore();
+  const queryType = type === "all" ? "" : type;
+
   const getCareers = async (): Promise<CareerType[]> => {
     try {
-      const response = await axios.get("http://localhost:3000/api/careers");
+      const url = queryType
+        ? `http://localhost:3000/api/careers?type=${queryType}`
+        : "http://localhost:3000/api/careers";
+      const response = await axios.get(url);
       const careers = response.data.data;
       console.log("Careers fetched:", careers);
       return careers;
@@ -22,7 +29,7 @@ const Table = () => {
 
   // queries
   const { data: careers, isLoading } = useQuery<CareerType[]>({
-    queryKey: ["careers"],
+    queryKey: ["careers", type],
     queryFn: getCareers,
   });
   if (isLoading) return <div>Loading...</div>;
