@@ -29,12 +29,13 @@ export const DELETE = async (
       );
     }
 
-    // soft delete the application
-    await Application.findByIdAndUpdate(id, {
-      deletedAt: new Date(),
-    });
+    await Application.findByIdAndDelete(id);
 
-    return successResponse("Application moved to bin successfully", null, 200);
+    return successResponse(
+      "Application premanently deleted successfully",
+      null,
+      200
+    );
   } catch (error) {
     return errorResponse("Failed to delete application", error, 500);
   }
