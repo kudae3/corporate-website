@@ -1,10 +1,36 @@
 "use client";
 import { ApplicationType } from "@/app/(root)/careers/Types/application";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
 
 const Restore = ({ application }: { application: ApplicationType }) => {
+  const queryClient = useQueryClient();
+
+  // mutation to restore application
+  const mutation = useMutation({
+    mutationFn: (id: ApplicationType["_id"]) => {
+      return axios.patch("http://localhost:3000/api/applications/bin", { id });
+    },
+    onSuccess: () => {
+      console.log("Application restored successfully");
+      queryClient.invalidateQueries({ queryKey: ["applications", "bin"] });
+    },
+    onError: () => {
+      console.log("Failed to restore application");
+    },
+  });
+
+  const handleRestore = () => {
+    console.log("Restoring application with ID:", application._id);
+    mutation.mutate(application._id);
+  };
+
   return (
-    <button className="cursor-pointer text-blue-500 hover:text-blue-700 duration-300 transition-colors">
+    <button
+      onClick={handleRestore}
+      className="cursor-pointer text-blue-500 hover:text-blue-700 duration-300 transition-colors"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

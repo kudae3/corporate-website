@@ -91,7 +91,7 @@ const Table = () => {
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <div className="flex justify-between items-center gap-1">
+                    <div className="flex justify-center items-center gap-2">
                       <Restore application={application} />
                       <Delete application={application} />
                     </div>
