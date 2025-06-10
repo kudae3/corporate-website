@@ -21,7 +21,7 @@ const Table = () => {
   };
 
   const { data: applications, isLoading } = useQuery({
-    queryKey: ["bin-applications"],
+    queryKey: ["applications", "bin"],
     queryFn: getAppliations,
   });
 
@@ -68,30 +68,30 @@ const Table = () => {
                     {i + 1}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-300">
-                    {application.user.username}
+                    {application?.user?.username}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
-                    {application.user.email}
+                    {application?.user?.email}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
-                    {application.career.title}
+                    {application?.career?.title}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
                     <span
                       className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        application.career.type === "full-time"
+                        application?.career?.type === "full-time"
                           ? "bg-purple-100 text-purple-800"
-                          : application.career.type === "part-time"
+                          : application?.career?.type === "part-time"
                           ? "bg-blue-100 text-blue-800"
                           : "bg-gray-100 text-green-600"
                       }`}
                     >
-                      {application.career.type}
+                      {application?.career?.type}
                     </span>
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <div className="flex space-x-1">
+                    <div className="flex justify-between items-center gap-1">
                       <Restore application={application} />
                       <Delete application={application} />
                     </div>

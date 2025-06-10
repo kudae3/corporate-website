@@ -6,6 +6,8 @@ import { ApplicationSchema } from "@/schemas/ApplicationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import "@/models/career.model.ts";
 import "@/models/user.model.ts";
+import User from "@/models/user.model";
+import Career from "@/models/career.model";
 
 export const GET = async () => {
   try {
@@ -50,6 +52,28 @@ export const POST = async (request: NextRequest) => {
         },
         { status: 400 }
       );
+    }
+
+    const { userId, careerId } = parsed.data;
+
+    // check if the user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      return errorResponse("User not found", null, 404);
+    }
+    // check if the career exists
+    const career = await Career.findById(careerId);
+    if (!career) {
+      return errorResponse("Career not found", null, 404);
+    }
+    // check if the user has already applied for the career
+    const existingApplication = await Application.findOne({
+      userId,
+      careerId,
+      deletedAt: null, // Ensure we only check active applications
+    });
+    if (existingApplication) {
+      return errorResponse("You have already applied for this job", null, 400);
     }
 
     // store at database
