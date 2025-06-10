@@ -1,5 +1,7 @@
-import Bin from "./components/bin";
+import { Button } from "@/components/ui/button";
 import Table from "./components/table";
+import { SkipBack, StepBack } from "lucide-react";
+import Back from "./components/back";
 
 const page = () => {
   return (
@@ -7,15 +9,16 @@ const page = () => {
       <div className="mb-6 flex justify-between">
         <div>
           <h1 className="text-2xl font-bold dark:text-white mb-2">
-            Application Management
+            Your Deleted Applications
           </h1>
-          <p className="dark:text-gray-400">Manage and view all applications</p>
+          <p className="dark:text-gray-400">
+            Manage and view your deleted applications
+          </p>
         </div>
         <div className="flex items-center gap-2">
-          <Bin />
+          <Back />
         </div>
       </div>
-
       <Table />
     </div>
   );

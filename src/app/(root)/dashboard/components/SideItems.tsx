@@ -33,7 +33,9 @@ const SideItems = () => {
       <Link
         href="/dashboard/applications"
         className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
-          ${pathName === "/dashboard/applications" ? "bg-primary" : ""}`}
+          ${
+            pathName.startsWith("/dashboard/applications") ? "bg-primary" : ""
+          }`}
       >
         <PaperIcon />
         Applications

@@ -2,25 +2,26 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import Delete from "./delete";
 import { ApplicationType } from "@/app/(root)/careers/Types/application";
+import Delete from "./delete";
+import Restore from "./restore";
 
 const Table = () => {
   const getAppliations = async (): Promise<ApplicationType[]> => {
     try {
-      const url = "http://localhost:3000/api/applications";
+      const url = "http://localhost:3000/api/applications/bin";
       const response = await axios.get(url);
       const applications = response.data.data;
-      console.log("Applications fetched:", applications);
+      console.log("Deleted Applications fetched:", applications);
       return applications;
     } catch (error) {
-      console.log("Error fetching applications:", error);
+      console.log("Error fetching deleted applications:", error);
       return [];
     }
   };
 
   const { data: applications, isLoading } = useQuery({
-    queryKey: ["applications"],
+    queryKey: ["bin-applications"],
     queryFn: getAppliations,
   });
 
@@ -90,7 +91,10 @@ const Table = () => {
                   </td>
 
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <Delete application={application} />
+                    <div className="flex space-x-1">
+                      <Restore application={application} />
+                      <Delete application={application} />
+                    </div>
                   </td>
                 </tr>
               ))}
