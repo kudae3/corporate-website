@@ -58,7 +58,7 @@ const Submit = ({ career }: { career: CareerType }) => {
     const coverLetter = formData.message || "";
 
     axios
-      .post("http://localhost:3000/api/careers/apply", {
+      .post("http://localhost:3000/api/applications", {
         userId,
         careerId,
         resume,
