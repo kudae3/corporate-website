@@ -3,23 +3,28 @@ import { ApplicationType } from "@/app/(root)/careers/Types/application";
 import React from "react";
 import Delete from "./delete";
 import { Alert } from "@/app/(root)/components/AlertDialog";
+import { saveAs } from "file-saver";
 
 const List = ({ application, i }: { application: ApplicationType; i: any }) => {
-  const showDetails = () => {
-    console.log("Show details for application:", application?._id);
-    // need to download the CV
+  const downloadCV = async () => {
+    try {
+      const response = await fetch(application?.resume);
+      if (!response.ok) throw new Error("Network error");
+
+      const blob = await response.blob();
+      saveAs(blob, `${application?.user?.username}-resume.pdf`);
+    } catch (error) {
+      console.error("Error downloading CV:", error);
+      alert("Failed to download CV. Please try again.");
+    }
   };
   return (
     <Alert
       title={`Application Details of ${application?.user?.username}`}
       action="Download CV"
-      onAction={showDetails}
+      onAction={downloadCV}
       trigger={
-        <tr
-          key={application?._id}
-          className="hover:bg-gray-800 cursor-pointer"
-          onClick={showDetails}
-        >
+        <tr key={application?._id} className="hover:bg-gray-800 cursor-pointer">
           <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-300">
             {i + 1}
           </td>
@@ -53,7 +58,7 @@ const List = ({ application, i }: { application: ApplicationType; i: any }) => {
       }
     >
       <div className="flex flex-col gap-2 space-y-3 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent hover:scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 dark:hover:scrollbar-thumb-gray-600">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-2">
           <span className="font-semibold">Username:</span>{" "}
           <p>{application?.user?.username}</p>
         </div>
