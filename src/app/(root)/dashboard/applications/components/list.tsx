@@ -52,7 +52,9 @@ const List = ({ application, i }: { application: ApplicationType; i: any }) => {
           </td>
 
           <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-            <Delete application={application} />
+            <div onClick={(e) => e.stopPropagation()}>
+              <Delete application={application} />
+            </div>
           </td>
         </tr>
       }

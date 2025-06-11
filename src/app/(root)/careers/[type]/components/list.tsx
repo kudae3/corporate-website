@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import { Career } from "../../Types/career";
+import { CareerType } from "../../Types/career";
 
 const List = ({
   career,
   selected,
   onSelect,
 }: {
-  career: Career;
+  career: CareerType;
   selected: Boolean;
   onSelect: () => void;
 }) => {
