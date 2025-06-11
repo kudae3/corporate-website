@@ -2,11 +2,15 @@ import { CareerType } from "@/app/(root)/careers/Types/career";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import TextEditor from "@/components/editor/TextEditor";
 import EditIcon from "@/components/icons/EditIcon";
+import { getPlainTextLength } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Edit = ({ career }: { career: CareerType }) => {
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [requirementsError, setRequirementsError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
   const [formData, setFormData] = useState({
     id: career?._id || "",
     title: career?.title || "",
@@ -37,11 +41,43 @@ const Edit = ({ career }: { career: CareerType }) => {
     mutation.mutate(formData);
   };
 
+  // Title validation
+  useEffect(() => {
+    setTitleError(formData.title.length > 0 && formData.title.length < 10);
+  }, [formData.title]);
+
+  // Description validation
+  useEffect(() => {
+    setDescriptionError(
+      formData.description.length > 0 && formData.description.length < 10
+    );
+  }, [formData.description]);
+
+  // Requirements validation
+  useEffect(() => {
+    const length = getPlainTextLength(formData.requirements);
+    setRequirementsError(length > 0 && length < 10);
+  }, [formData.requirements]);
+
+  const isValidForm = () => {
+    return (
+      formData.title !== "" &&
+      formData.title.length >= 10 &&
+      formData.location !== "" &&
+      formData.salary !== "" &&
+      formData.description !== "" &&
+      formData.description.length >= 10 &&
+      formData.requirements !== "" &&
+      getPlainTextLength(formData.requirements) >= 10
+    );
+  };
+
   return (
     <Alert
       title="Edit Career"
       action="Submit"
       onAction={onSubmit}
+      btnDisabled={!isValidForm()}
       trigger={
         <button className="text-blue-600 hover:text-blue-900 cursor-pointer">
           <EditIcon />
@@ -70,6 +106,11 @@ const Edit = ({ career }: { career: CareerType }) => {
               placeholder="Enter the title"
               className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />
+            {titleError && (
+              <p className="text-xs text-start text-red-500 mt-2">
+                Title must be at least 10 characters long.
+              </p>
+            )}
           </div>
           {/* location */}
           <div>
@@ -138,6 +179,11 @@ const Edit = ({ career }: { career: CareerType }) => {
               placeholder="Enter the description"
               className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
             />
+            {descriptionError && (
+              <p className="text-xs text-start text-red-500 mt-2">
+                Description must be at least 10 characters long.
+              </p>
+            )}
           </div>
           {/* salary */}
           <div>
@@ -176,6 +222,11 @@ const Edit = ({ career }: { career: CareerType }) => {
                 setFormData({ ...formData, requirements: value })
               }
             />
+            {requirementsError && (
+              <p className="text-xs text-start text-red-500 mt-2">
+                Requirements must be at least 10 characters long.
+              </p>
+            )}
           </div>
         </form>
       </div>

@@ -46,20 +46,20 @@ const Add = () => {
 
   // Title validation
   useEffect(() => {
-    setTitleError(formData.title.length > 1 && formData.title.length < 10);
+    setTitleError(formData.title.length > 0 && formData.title.length < 10);
   }, [formData.title]);
 
   // Description validation
   useEffect(() => {
     setDescriptionError(
-      formData.description.length > 1 && formData.description.length < 10
+      formData.description.length > 0 && formData.description.length < 10
     );
   }, [formData.description]);
 
   // Requirements validation
   useEffect(() => {
     const length = getPlainTextLength(formData.requirements);
-    setRequirementsError(length > 1 && length < 10);
+    setRequirementsError(length > 0 && length < 10);
   }, [formData.requirements]);
 
   const isValidForm = () => {
@@ -111,7 +111,7 @@ const Add = () => {
                 className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
               />
               {titleError && (
-                <p className="text-xs text-start text-red-500">
+                <p className="text-xs text-start text-red-500 mt-2">
                   Title must be at least 10 characters long.
                 </p>
               )}
