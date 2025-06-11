@@ -3,9 +3,10 @@
 import { CareerType } from "@/app/(root)/careers/Types/career";
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import TextEditor from "@/components/editor/TextEditor";
+import { getPlainTextLength } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Add = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,10 @@ const Add = () => {
     requirements: "",
     salary: "",
   });
+
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [requirementsError, setRequirementsError] = useState(false);
+  const [titleError, setTitleError] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -38,12 +43,45 @@ const Add = () => {
     console.log("Career data to be added:", formData);
     mutation.mutate(formData);
   };
+
+  // Title validation
+  useEffect(() => {
+    setTitleError(formData.title.length > 1 && formData.title.length < 10);
+  }, [formData.title]);
+
+  // Description validation
+  useEffect(() => {
+    setDescriptionError(
+      formData.description.length > 1 && formData.description.length < 10
+    );
+  }, [formData.description]);
+
+  // Requirements validation
+  useEffect(() => {
+    const length = getPlainTextLength(formData.requirements);
+    setRequirementsError(length > 1 && length < 10);
+  }, [formData.requirements]);
+
+  const isValidForm = () => {
+    return (
+      formData.title !== "" &&
+      formData.title.length >= 10 &&
+      formData.location !== "" &&
+      formData.salary !== "" &&
+      formData.description !== "" &&
+      formData.description.length >= 10 &&
+      formData.requirements !== "" &&
+      getPlainTextLength(formData.requirements) >= 10
+    );
+  };
+
   return (
     <div>
       <Alert
         title="Add Career"
         action="Confirm"
         onAction={handleSubmit}
+        btnDisabled={!isValidForm()}
         trigger={
           <button className="px-4 py-2 bg-sky-600 text-white text-sm font-medium rounded-lg hover:bg-sky-800 cursor-pointer">
             Add Career
@@ -56,7 +94,7 @@ const Add = () => {
             <div>
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Title *
               </label>
@@ -72,12 +110,17 @@ const Add = () => {
                 placeholder="Enter the title"
                 className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
               />
+              {titleError && (
+                <p className="text-xs text-start text-red-500">
+                  Title must be at least 10 characters long.
+                </p>
+              )}
             </div>
             {/* location */}
             <div>
               <label
                 htmlFor="location"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Location *
               </label>
@@ -98,7 +141,7 @@ const Add = () => {
             <div>
               <label
                 htmlFor="type"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Type *
               </label>
@@ -124,7 +167,7 @@ const Add = () => {
             <div>
               <label
                 htmlFor="description"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 description *
               </label>
@@ -139,12 +182,17 @@ const Add = () => {
                 placeholder="Enter the description"
                 className="w-full px-4 py-3 rounded-lg focus:outline-hidden dark:bg-gray-700 dark:text-white placeholder-gray-400 transition-colors"
               />
+              {descriptionError && (
+                <p className="text-xs text-start text-red-500">
+                  Description must be at least 10 characters long.
+                </p>
+              )}
             </div>
             {/* salary */}
             <div>
               <label
                 htmlFor="salary"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 salary *
               </label>
@@ -165,7 +213,7 @@ const Add = () => {
             <div>
               <label
                 htmlFor="requirements"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm text-start font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 requirements *
               </label>
@@ -176,6 +224,11 @@ const Add = () => {
                   setFormData({ ...formData, requirements: value })
                 }
               />
+              {requirementsError && (
+                <p className="text-xs text-start text-red-500 mt-2">
+                  Requirements must be at least 10 characters long.
+                </p>
+              )}
             </div>
           </form>
         </div>
