@@ -52,38 +52,47 @@ const List = ({ application, i }: { application: ApplicationType; i: any }) => {
         </tr>
       }
     >
-      <div className="flex flex-col gap-2">
-        <p>
+      <div className="flex flex-col gap-2 space-y-3 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent hover:scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 dark:hover:scrollbar-thumb-gray-600">
+        <div className="flex items-center gap-2">
           <span className="font-semibold">Username:</span>{" "}
-          {application?.user?.username}
-        </p>
-        <p>
+          <p>{application?.user?.username}</p>
+        </div>
+        <div className="flex items-center gap-2">
           <span className="font-semibold">Email:</span>{" "}
-          {application?.user?.email}
-        </p>
-        <p>
+          <p>{application?.user?.email}</p>
+        </div>
+        <div className="flex items-center gap-2">
           <span className="font-semibold">Title:</span>{" "}
-          {application?.career?.title}
-        </p>
-        <p>
+          <p>{application?.career?.title}</p>
+        </div>
+        <div className="flex items-center gap-2">
           <span className="font-semibold">Type:</span>{" "}
-          {application?.career?.type}
-        </p>
-        <p>
+          <p>{application?.career?.type}</p>
+        </div>
+        <div className="flex items-center gap-2">
           <span className="font-semibold">Cover Letter:</span>{" "}
-          {application?.coverLetter}
-        </p>
-        <p>
-          <span className="font-semibold">Resume:</span>{" "}
-          <a
-            href={application?.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-700 underline"
-          >
-            View Resume (PDF)
-          </a>
-        </p>
+          <p>{application?.coverLetter}</p>
+        </div>
+        <div className="flex flex-col">
+          <span className="font-semibold mb-2">Resume Preview:</span>
+          <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50">
+            <iframe
+              src={application?.resume}
+              className="w-full h-full border-0"
+              title="Resume Preview"
+            />
+          </div>
+          <div className="mt-2">
+            <a
+              href={application?.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-700 underline text-sm"
+            >
+              Open Full PDF
+            </a>
+          </div>
+        </div>
       </div>
     </Alert>
   );
