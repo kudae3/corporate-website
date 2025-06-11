@@ -2,8 +2,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import Delete from "./delete";
 import { ApplicationType } from "@/app/(root)/careers/Types/application";
+import List from "./list";
 
 const Table = () => {
   const getAppliations = async (): Promise<ApplicationType[]> => {
@@ -62,37 +62,7 @@ const Table = () => {
           <tbody className="divide-y divide-gray-200">
             {applications &&
               applications?.map((application: any, i: any) => (
-                <tr key={application?._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-300">
-                    {i + 1}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-300">
-                    {application?.user?.username}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
-                    {application?.user?.email}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
-                    {application?.career?.title}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-300">
-                    <span
-                      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        application?.career?.type === "full-time"
-                          ? "bg-purple-100 text-purple-800"
-                          : application?.career?.type === "part-time"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-gray-100 text-green-600"
-                      }`}
-                    >
-                      {application?.career?.type}
-                    </span>
-                  </td>
-
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <Delete application={application} />
-                  </td>
-                </tr>
+                <List application={application} i={i} key={i} />
               ))}
           </tbody>
         </table>
