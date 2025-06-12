@@ -2,20 +2,24 @@ import React from "react";
 import Careers from "./components/careers";
 import { notFound } from "next/navigation";
 import { getCareer } from "@/lib/getCareer";
-import { Career } from "../Types/career";
 import Link from "next/link";
 import routes from "@/routes";
+import { CareerType } from "../Types/career";
 
-const VALID_TYPES: Career["type"][] = ["part-time", "full-time", "internship"];
+const VALID_TYPES: CareerType["type"][] = [
+  "part-time",
+  "full-time",
+  "internship",
+];
 
 const page = async ({
   params,
 }: {
-  params: Promise<{ type: Career["type"] }>;
+  params: Promise<{ type: CareerType["type"] }>;
 }) => {
   const { type } = await params;
 
-  if (!VALID_TYPES.includes(type as Career["type"])) {
+  if (!VALID_TYPES.includes(type as CareerType["type"])) {
     notFound();
   }
 
@@ -46,7 +50,7 @@ const page = async ({
           <span className="font-semibold">{type.replace("-", " ")}</span>
         </nav>
       </div>
-      <Careers careers={response} type={type as Career["type"]} />
+      <Careers careers={response} type={type as CareerType["type"]} />
     </div>
   );
 };

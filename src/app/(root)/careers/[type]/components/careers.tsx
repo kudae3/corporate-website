@@ -1,17 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Career } from "../../Types/career";
 import List from "./list";
 import Detail from "./detail";
+import { CareerType } from "../../Types/career";
 
 const Careers = ({
   careers,
   type,
 }: {
-  careers: Career[] | null;
-  type: Career["type"];
+  careers: CareerType[] | null;
+  type: CareerType["type"];
 }) => {
-  const [selectedCareer, setSelectedCareer] = useState<Career | undefined>();
+  const [selectedCareer, setSelectedCareer] = useState<
+    CareerType | undefined
+  >();
   const [showDetail, setShowDetail] = useState(false);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Careers = ({
     }
   }, [careers]);
 
-  const handleCareerSelect = (career: Career) => {
+  const handleCareerSelect = (career: CareerType) => {
     setSelectedCareer(career);
     setShowDetail(true);
   };
@@ -44,7 +46,7 @@ const Careers = ({
             {/* Left: Job List - 2 columns */}
             <div className="lg:col-span-2 space-y-3">
               <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div className="p-4 bg-gradient-to-r from-primary to-secondary">
+                <div className="p-4 bg-gray-500">
                   <h3 className="text-white font-semibold">
                     Available Positions
                   </h3>
@@ -66,7 +68,7 @@ const Careers = ({
             <div className="lg:col-span-3">
               {selectedCareer && (
                 <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-secondary to-primary">
+                  <div className="p-4 bg-gray-500">
                     <h3 className="text-white font-semibold">Job Details</h3>
                   </div>
                   <div className="p-6">
