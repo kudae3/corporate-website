@@ -13,10 +13,10 @@ const SideItems = () => {
   console.log("Current Path:", pathName);
 
   return (
-    <nav className="space-y-2">
+    <nav className="lg:space-y-2 gap-3 lg:gap-0 grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-1">
       <Link
         href="/dashboard"
-        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
+        className={`flex items-center justify-center lg:justify-start border border-gray-600 lg:border-0 px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
           ${pathName === "/dashboard" ? "bg-primary" : ""}`}
       >
         <UsersIcon />
@@ -24,7 +24,7 @@ const SideItems = () => {
       </Link>
       <Link
         href="/dashboard/careers"
-        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
+        className={`flex items-center justify-center lg:justify-start border border-gray-600 lg:border-0 px-4 py-2  text-sm font-medium rounded-lg hover:bg-primary
           ${pathName === "/dashboard/careers" ? "bg-primary" : ""}`}
       >
         <JobIcon />
@@ -32,7 +32,7 @@ const SideItems = () => {
       </Link>
       <Link
         href="/dashboard/applications"
-        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
+        className={`flex items-center justify-center lg:justify-start border border-gray-600 lg:border-0 px-4 py-2  text-sm font-medium rounded-lg hover:bg-primary
           ${
             pathName.startsWith("/dashboard/applications") ? "bg-primary" : ""
           }`}
@@ -42,11 +42,11 @@ const SideItems = () => {
       </Link>
       <Link
         href="/dashboard/block-list"
-        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
+        className={`flex items-center justify-center lg:justify-start border border-gray-600 lg:border-0 px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary
           ${pathName === "/dashboard/block-list" ? "bg-primary" : ""}`}
       >
         <BlcokIcon />
-        Block List
+        <div className="whitespace-nowrap">Block List</div>
       </Link>
     </nav>
   );
