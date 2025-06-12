@@ -1,12 +1,12 @@
 const routes = {
   Home: "/",
+  Services: "/services",
+  Projects: "/projects",
+  Careers: "/careers",
+  ContactUs: "/contact-us",
+  Dashborard: "/dashboard",
   Login: "/login",
   Register: "/register",
-  About: "/about",
-  Careers: "/careers",
-  Projects: "/projects",
-  Dashborard: "/dashboard",
-  History: "/history",
 };
 
 export default routes;
