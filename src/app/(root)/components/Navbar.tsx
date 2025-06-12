@@ -92,15 +92,6 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   </li>
 
                   <li>
-                    <Link
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                      href={routes.History}
-                    >
-                      History
-                    </Link>
-                  </li>
-
-                  <li>
                     <a
                       className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                       href="#"
@@ -253,15 +244,6 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                 >
                   Services
                 </a>
-              </li>
-              <li>
-                <Link
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
-                  href={routes.History}
-                  onClick={closeMobileMenu}
-                >
-                  History
-                </Link>
               </li>
               <li>
                 <a
