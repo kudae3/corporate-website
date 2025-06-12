@@ -15,24 +15,21 @@ const careers = [
     title: "Full-Time Careers",
     description:
       "Take your career to the next level with our full-time positions. Enjoy benefits, growth, and a dynamic work environment.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "./full-time.jpg",
   },
   {
     type: "part-time",
     title: "Part-Time Opportunities",
     description:
       "Flexible hours for those seeking work-life balance. Join us as a part-time team member and grow your career at your own pace.",
-    image:
-      "https://images.unsplash.com/photo-1624948384140-e48e47087fad?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "part-time.jpg",
   },
   {
     type: "internship",
     title: "Internship Programs for students",
     description:
       "Kickstart your career with hands-on experience. Our internship program is designed for students eager to learn and contribute.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "intern.jpg",
   },
 ];
 
