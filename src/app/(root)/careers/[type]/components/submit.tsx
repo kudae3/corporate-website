@@ -2,7 +2,7 @@
 
 import { Alert } from "@/app/(root)/components/AlertDialog";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "@/components/upload/multi-file";
 import {
   UploaderProvider,
@@ -16,11 +16,23 @@ import { CareerType } from "../../Types/career";
 const Submit = ({ career }: { career: CareerType }) => {
   const [resumeURL, setResumeURL] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
     message: "",
     terms: false,
   });
+  const [messageError, setMessageError] = useState(false);
+  const [resumeError, setResumeError] = useState(false);
+
+  // Validate message length
+  useEffect(() => {
+    setMessageError(
+      formData.message.length > 0 && formData.message.length < 10
+    );
+  });
+
+  // Validate Resume URL length
+  useEffect(() => {
+    setResumeError(!resumeURL);
+  }, [resumeURL]);
 
   const { edgestore } = useEdgeStore();
 
@@ -32,8 +44,6 @@ const Submit = ({ career }: { career: CareerType }) => {
         signal,
         onProgressChange,
       });
-      // you can run some server action or api here
-      // to add the necessary data to your database
       console.log(res);
       if (res) {
         setResumeURL(res.url);
@@ -72,10 +82,15 @@ const Submit = ({ career }: { career: CareerType }) => {
       });
   };
 
+  const isValidForm = () => {
+    return formData.message !== "" && formData.terms && resumeURL;
+  };
+
   return (
     <Alert
       onAction={() => SubmitJob(career._id)}
       action="Submit"
+      btnDisabled={!isValidForm()}
       trigger={
         <Button className="flex-1 bg-primary hover:bg-primary/90 text-white cursor-pointer">
           Apply Now
@@ -154,6 +169,9 @@ const Submit = ({ career }: { career: CareerType }) => {
                 }}
               />
             </UploaderProvider>
+            {resumeError && (
+              <p className="text-xs text-red-500 mt-1">Resume is required.</p>
+            )}
           </div>
 
           {/* Cover Letter/Message */}
@@ -175,6 +193,11 @@ const Submit = ({ career }: { career: CareerType }) => {
               placeholder="Tell us why you're interested in this position and what makes you a great fit..."
               className="w-full px-4 py-3  rounded-lg focus:outline-none dark:bg-gray-700 dark:text-white placeholder-gray-400 resize-vertical transition-colors"
             ></textarea>
+            {messageError && (
+              <p className="text-xs text-red-500 mt-1">
+                Cover letter must be at least 10 characters long.
+              </p>
+            )}
           </div>
 
           {/* Terms and Conditions */}
