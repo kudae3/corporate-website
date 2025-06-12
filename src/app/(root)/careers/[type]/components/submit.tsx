@@ -20,7 +20,6 @@ const Submit = ({ career }: { career: CareerType }) => {
     terms: false,
   });
   const [messageError, setMessageError] = useState(false);
-  const [resumeError, setResumeError] = useState(false);
 
   // Validate message length
   useEffect(() => {
@@ -28,11 +27,6 @@ const Submit = ({ career }: { career: CareerType }) => {
       formData.message.length > 0 && formData.message.length < 10
     );
   });
-
-  // Validate Resume URL length
-  useEffect(() => {
-    setResumeError(!resumeURL);
-  }, [resumeURL]);
 
   const { edgestore } = useEdgeStore();
 
@@ -98,7 +92,7 @@ const Submit = ({ career }: { career: CareerType }) => {
       }
     >
       <div className="space-y-6">
-        <div className="text-center mb-6">
+        <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
             Apply for {career.title}
           </h3>
@@ -108,7 +102,7 @@ const Submit = ({ career }: { career: CareerType }) => {
         </div>
 
         {/* Form */}
-        <form className="space-y-5">
+        <form className="space-y-5 text-start">
           {/* Name Field */}
           <div>
             <label
@@ -169,9 +163,6 @@ const Submit = ({ career }: { career: CareerType }) => {
                 }}
               />
             </UploaderProvider>
-            {resumeError && (
-              <p className="text-xs text-red-500 mt-1">Resume is required.</p>
-            )}
           </div>
 
           {/* Cover Letter/Message */}

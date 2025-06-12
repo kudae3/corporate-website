@@ -66,15 +66,6 @@ export const POST = async (request: NextRequest) => {
     if (!career) {
       return errorResponse("Career not found", null, 404);
     }
-    // check if the user has already applied for the career
-    const existingApplication = await Application.findOne({
-      userId,
-      careerId,
-      deletedAt: null, // Ensure we only check active applications
-    });
-    if (existingApplication) {
-      return errorResponse("You have already applied for this job", null, 400);
-    }
 
     // store at database
     const newApplication = new Application({ ...parsed.data, deletedAt: null });
