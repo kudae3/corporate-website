@@ -4,6 +4,7 @@ import { TrashIcon } from "@/components/icons/TrashIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Delete = ({ application }: { application: ApplicationType }) => {
   const queryClient = useQueryClient();
@@ -15,9 +16,11 @@ const Delete = ({ application }: { application: ApplicationType }) => {
     onSuccess: () => {
       console.log("Application permanently deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["applications", "bin"] });
+      toast.success("Application deleted successfully");
     },
     onError: () => {
       console.log("Failed to delete application");
+      toast.error("Failed to delete application");
     },
   });
 

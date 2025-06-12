@@ -4,6 +4,7 @@ import MinusIcon from "@/components/icons/MinusIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Delete = ({ application }: { application: ApplicationType }) => {
   const queryClient = useQueryClient();
@@ -14,11 +15,13 @@ const Delete = ({ application }: { application: ApplicationType }) => {
       return axios.delete("http://localhost:3000/api/applications/" + id);
     },
     onSuccess: () => {
-      console.log("Application deleted successfully from frontend");
+      console.log("Application deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["applications"] });
+      toast.warn("Application moved to bin successfully");
     },
     onError: (error) => {
       console.error("Failed to delete application:", error);
+      toast.error("Failed to move application to bin");
     },
   });
 

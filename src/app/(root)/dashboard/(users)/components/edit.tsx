@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { EditIcon } from "lucide-react";
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Edit = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();
@@ -27,9 +28,11 @@ const Edit = ({ user }: { user: UserType }) => {
       axios.patch("http://localhost:3000/api/users", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      toast.success("User updated successfully");
     },
     onError: (error) => {
       console.log("Failed to update user", error);
+      toast.error("Failed to update user");
     },
   });
 

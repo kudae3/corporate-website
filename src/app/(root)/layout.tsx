@@ -7,6 +7,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import QueryProvider from "@/context/QueryProvider";
 import { authUser } from "@/lib/auth";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -32,6 +33,7 @@ export default async function RootLayout({
                 <Navbar auth={auth} />
                 <div>
                   <div className="min-h-screen">{children}</div>
+                  <ToastContainer />
                 </div>
                 <Footer />
               </body>

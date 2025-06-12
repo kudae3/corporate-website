@@ -4,6 +4,7 @@ import { UTurnArrow } from "@/components/icons/UTurnArrow";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 export const Unban = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();
@@ -14,9 +15,11 @@ export const Unban = ({ user }: { user: UserType }) => {
       axios.post("http://localhost:3000/api/users/unban", { clerkId: data }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["bannedUsers"] });
+      toast.success("User un-banned successfully");
     },
     onError: (error) => {
       console.log("Failed to update user", error);
+      toast.error("Failed to un-ban user");
     },
   });
 

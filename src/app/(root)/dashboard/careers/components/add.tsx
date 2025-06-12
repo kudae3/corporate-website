@@ -7,6 +7,7 @@ import { getPlainTextLength } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Add = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +33,11 @@ const Add = () => {
     onSuccess: () => {
       console.log("Career added successfully");
       queryClient.invalidateQueries({ queryKey: ["careers"] });
-      // Optionally, you can reset the form or refetch data here
+      toast.success("Career added successfully");
     },
     onError: (error) => {
       console.error("Failed to add career", error);
+      toast.error("Failed to add career");
     },
   });
 

@@ -6,6 +6,7 @@ import { getPlainTextLength } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Edit = ({ career }: { career: CareerType }) => {
   const [descriptionError, setDescriptionError] = useState(false);
@@ -30,9 +31,11 @@ const Edit = ({ career }: { career: CareerType }) => {
     onSuccess: () => {
       console.log("Career updated successfully");
       queryClient.invalidateQueries({ queryKey: ["careers"] });
+      toast.success("Career updated successfully");
     },
     onError: (error) => {
       console.error("Failed to update career", error);
+      toast.error("Failed to update career");
     },
   });
 

@@ -4,6 +4,7 @@ import { TrashIcon } from "@/components/icons/TrashIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Delete = ({ career }: { career: CareerType }) => {
   const queryClient = useQueryClient();
@@ -15,9 +16,11 @@ const Delete = ({ career }: { career: CareerType }) => {
     onSuccess: () => {
       console.log("Career deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["careers"] });
+      toast.success("Career deleted successfully");
     },
     onError: (error) => {
       console.log("Failed to delete career", error);
+      toast.error("Failed to delete career");
     },
   });
 

@@ -5,6 +5,7 @@ import BanUserIcon from "@/components/icons/BanUserIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Ban = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();
@@ -18,9 +19,11 @@ const Ban = ({ user }: { user: UserType }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      toast.success("User banned successfully");
     },
     onError: (error) => {
       console.log("Failed to ban user", error);
+      toast.error("Failed to ban user");
     },
   });
 

@@ -3,6 +3,7 @@ import { ApplicationType } from "@/app/(root)/careers/Types/application";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Restore = ({ application }: { application: ApplicationType }) => {
   const queryClient = useQueryClient();
@@ -15,9 +16,11 @@ const Restore = ({ application }: { application: ApplicationType }) => {
     onSuccess: () => {
       console.log("Application restored successfully");
       queryClient.invalidateQueries({ queryKey: ["applications", "bin"] });
+      toast.success("Application restored successfully");
     },
     onError: () => {
       console.log("Failed to restore application");
+      toast.error("Failed to restore application");
     },
   });
 

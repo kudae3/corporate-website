@@ -12,6 +12,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { useAuthContext } from "@/context/AuthContext";
 import axios from "axios";
 import { CareerType } from "../../Types/career";
+import { toast } from "react-toastify";
 
 const Submit = ({ career }: { career: CareerType }) => {
   const [resumeURL, setResumeURL] = useState<string | null>(null);
@@ -70,9 +71,11 @@ const Submit = ({ career }: { career: CareerType }) => {
       })
       .then((response) => {
         console.log("Application submitted successfully", response.data);
+        toast.success("Application submitted successfully!");
       })
       .catch(() => {
         console.log("Error submitting application");
+        toast.error("Failed to submit application. Please try again.");
       });
   };
 
