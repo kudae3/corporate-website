@@ -5,8 +5,6 @@ const routes = {
   Careers: "/careers",
   ContactUs: "/contact-us",
   Dashborard: "/dashboard",
-  Login: "/login",
-  Register: "/register",
 };
 
 export default routes;

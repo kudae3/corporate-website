@@ -1,10 +1,17 @@
 "use client";
 
 import routes from "@/routes";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { UserType } from "../careers/Types/user";
+import { Button } from "@/components/ui/button";
 
 const Navbar = ({ auth }: { auth: UserType }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -135,20 +142,18 @@ const Navbar = ({ auth }: { auth: UserType }) => {
             <div className="flex items-center gap-4">
               <SignedOut>
                 <div className="sm:flex sm:gap-4">
-                  <Link
-                    className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500"
-                    href={routes.Login}
-                  >
-                    Login
-                  </Link>
+                  <SignInButton mode="modal">
+                    <Button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500">
+                      Sign In
+                    </Button>
+                  </SignInButton>
 
                   <div className="hidden sm:flex">
-                    <Link
-                      className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                      href={routes.Register}
-                    >
-                      Register
-                    </Link>
+                    <SignUpButton mode="modal">
+                      <Button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+                        Sign Up
+                      </Button>
+                    </SignUpButton>
                   </div>
                 </div>
               </SignedOut>
@@ -290,27 +295,24 @@ const Navbar = ({ auth }: { auth: UserType }) => {
           <div className="p-4">
             <SignedOut>
               <div className="space-y-2 border-t dark:border-gray-700">
-                <Link
-                  className="block w-full rounded-md bg-teal-600 px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-teal-700"
-                  href={routes.Login}
-                  onClick={closeMobileMenu}
-                >
-                  Login
-                </Link>
-                <Link
-                  className="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white"
-                  href={routes.Register}
-                  onClick={closeMobileMenu}
-                >
-                  Register
-                </Link>
+                <SignInButton mode="modal">
+                  <Button
+                    className="block w-full rounded-md bg-teal-600 px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-teal-700"
+                    onClick={closeMobileMenu}
+                  >
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button
+                    className="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white"
+                    onClick={closeMobileMenu}
+                  >
+                    Sign Up
+                  </Button>
+                </SignUpButton>
               </div>
             </SignedOut>
-            {/* <SignedIn>
-              <div className="flex items-center justify-center">
-                <UserButton />
-              </div>
-            </SignedIn> */}
           </div>
         </div>
       </div>
