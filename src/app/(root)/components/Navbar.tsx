@@ -59,9 +59,12 @@ const Navbar = ({ auth }: { auth: UserType }) => {
         }`}
       >
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="md:flex md:items-center md:gap-12">
-              <a className="block text-teal-600 dark:text-teal-600" href="#">
+          <div className="h-16 grid grid-cols-2 md:grid-cols-5 items-center">
+            <div>
+              <Link
+                className="block text-teal-600 dark:text-teal-600"
+                href={routes.Home}
+              >
                 <span className="sr-only">Home</span>
                 <svg
                   className="h-8"
@@ -74,12 +77,12 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden md:block md:col-span-3">
               <nav aria-label="Global">
-                <ul className="flex items-center gap-6 text-sm">
+                <ul className="flex items-center justify-center gap-6 text-sm">
                   <li>
                     <Link
                       className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
@@ -129,7 +132,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                     <li>
                       <Link
                         className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                        href={routes.Dashborard}
+                        href={routes.Dashboard}
                       >
                         Dashboard
                       </Link>
@@ -139,22 +142,20 @@ const Navbar = ({ auth }: { auth: UserType }) => {
               </nav>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex justify-end gap-4">
               <SignedOut>
-                <div className="sm:flex sm:gap-4">
+                <div className="hidden md:flex justify-center items-center gap-2">
                   <SignInButton mode="modal">
                     <Button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500">
                       Sign In
                     </Button>
                   </SignInButton>
 
-                  <div className="hidden sm:flex">
-                    <SignUpButton mode="modal">
-                      <Button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
-                        Sign Up
-                      </Button>
-                    </SignUpButton>
-                  </div>
+                  <SignUpButton mode="modal">
+                    <Button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+                      Sign Up
+                    </Button>
+                  </SignUpButton>
                 </div>
               </SignedOut>
 
@@ -281,7 +282,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                 <li>
                   <Link
                     className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
-                    href={routes.Dashborard}
+                    href={routes.Dashboard}
                     onClick={closeMobileMenu}
                   >
                     Dashboard
