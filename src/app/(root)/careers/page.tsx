@@ -8,6 +8,7 @@ import FullTime from "./[type]/detail/components/fullTime";
 import Internship from "./[type]/detail/components/internship";
 import PartTime from "./[type]/detail/components/partTime";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 const careers = [
   {
@@ -34,6 +35,7 @@ const careers = [
 ];
 
 const Page = () => {
+  const pathname = usePathname();
   return (
     <div className="container">
       <div className="text-center mb-16">
@@ -88,7 +90,7 @@ const Page = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <SignedOut>
-                  <SignInButton mode="modal">
+                  <SignInButton mode="modal" fallbackRedirectUrl={pathname}>
                     <Button
                       variant="default"
                       className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"

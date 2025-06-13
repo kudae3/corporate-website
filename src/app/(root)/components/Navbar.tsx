@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { UserType } from "../careers/Types/user";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 const Navbar = ({ auth }: { auth: UserType }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -50,6 +51,8 @@ const Navbar = ({ auth }: { auth: UserType }) => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const pathname = usePathname();
 
   return (
     <>
@@ -145,13 +148,13 @@ const Navbar = ({ auth }: { auth: UserType }) => {
             <div className="flex justify-end gap-4">
               <SignedOut>
                 <div className="hidden md:flex justify-center items-center gap-2">
-                  <SignInButton mode="modal">
+                  <SignInButton fallbackRedirectUrl={pathname} mode="modal">
                     <Button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500">
                       Sign In
                     </Button>
                   </SignInButton>
 
-                  <SignUpButton mode="modal">
+                  <SignUpButton fallbackRedirectUrl={pathname} mode="modal">
                     <Button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
                       Sign Up
                     </Button>
