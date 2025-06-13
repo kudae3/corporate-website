@@ -1,5 +1,5 @@
 import React from "react";
-import { Career } from "../../Types/career";
+import { CareerType } from "../../Types/career";
 import Link from "next/link";
 import routes from "@/routes";
 import { notFound } from "next/navigation";
@@ -12,7 +12,7 @@ const valid_types = ["part-time", "full-time", "internship"];
 const page = async ({
   params,
 }: {
-  params: Promise<{ type: Career["type"] }>;
+  params: Promise<{ type: CareerType["type"] }>;
 }) => {
   const { type } = await params;
   if (!valid_types.includes(type)) {

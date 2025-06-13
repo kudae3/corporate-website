@@ -1,8 +1,12 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
+import routes from "@/routes";
 
 const FullTime = () => {
+  const auth = useAuth();
+
   return (
     <div className="space-y-8 overflow-y-auto max-h-[80vh] pr-4">
       {/* Header Section */}
@@ -251,17 +255,19 @@ const FullTime = () => {
           and apply today.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
-          >
-            <Link href="/careers/full-time">View Open Positions</Link>
-          </Button>
+          {auth.isSignedIn && (
+            <Button
+              asChild
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
+            >
+              <Link href="/careers/full-time">View Open Positions</Link>
+            </Button>
+          )}
           <Button
             variant="outline"
             className="border-primary text-primary hover:bg-primary/10 px-8 py-3"
           >
-            Contact HR Team
+            <Link href={routes.ContactUs}>Contact HR Team</Link>
           </Button>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
+import routes from "@/routes";
 
 const PartTime = () => {
+  const auth = useAuth();
   return (
     <div className="space-y-8 overflow-y-auto max-h-[80vh] pr-4">
       {/* Header Section */}
@@ -240,17 +243,19 @@ const PartTime = () => {
           career changers, or anyone seeking work-life balance.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
-          >
-            <Link href="/careers/part-time">Browse Part-Time Roles</Link>
-          </Button>
+          {auth.isSignedIn && (
+            <Button
+              asChild
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
+            >
+              <Link href="/careers/part-time">Browse Part-Time Roles</Link>
+            </Button>
+          )}
           <Button
             variant="outline"
             className="border-orange-500 text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20 px-8 py-3"
           >
-            Learn More
+            <Link href={routes.ContactUs}>Learn More</Link>
           </Button>
         </div>
       </div>

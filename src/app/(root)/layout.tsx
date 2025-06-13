@@ -4,10 +4,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AuthProvider } from "@/context/AuthContext";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 import QueryProvider from "@/context/QueryProvider";
 import { authUser } from "@/lib/auth";
 import { ToastContainer } from "react-toastify";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -26,8 +26,21 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <QueryProvider>
-        <EdgeStoreProvider>
-          <AuthProvider>
+        <AuthProvider>
+          {auth ? (
+            <EdgeStoreProvider>
+              <html lang="en">
+                <body>
+                  <Navbar auth={auth} />
+                  <div>
+                    <div className="min-h-screen">{children}</div>
+                    <ToastContainer />
+                  </div>
+                  <Footer />
+                </body>
+              </html>
+            </EdgeStoreProvider>
+          ) : (
             <html lang="en">
               <body>
                 <Navbar auth={auth} />
@@ -38,8 +51,8 @@ export default async function RootLayout({
                 <Footer />
               </body>
             </html>
-          </AuthProvider>
-        </EdgeStoreProvider>
+          )}
+        </AuthProvider>
       </QueryProvider>
     </ClerkProvider>
   );

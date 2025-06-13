@@ -7,7 +7,7 @@ import React from "react";
 import FullTime from "./[type]/detail/components/fullTime";
 import Internship from "./[type]/detail/components/internship";
 import PartTime from "./[type]/detail/components/partTime";
-import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 const careers = [
   {
@@ -34,7 +34,6 @@ const careers = [
 ];
 
 const Page = () => {
-  let router = useRouter();
   return (
     <div className="container">
       <div className="text-center mb-16">
@@ -88,17 +87,29 @@ const Page = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
-                >
-                  <Link href={`/careers/${career.type.toLocaleLowerCase()}`}>
-                    Apply Now
-                  </Link>
-                </Button>
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <Button
+                      variant="default"
+                      className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    >
+                      Apply Now
+                    </Button>
+                  </SignInButton>
+                </SignedOut>
+                <SignedIn>
+                  <Button
+                    asChild
+                    className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+                  >
+                    <Link href={`/careers/${career.type.toLocaleLowerCase()}`}>
+                      Apply Now
+                    </Link>
+                  </Button>
+                </SignedIn>
                 <Alert
                   title={`${career.title} Details`}
-                  action="Apply Now"
+                  action="Got it!"
                   trigger={
                     <Button
                       variant="outline"
@@ -106,9 +117,6 @@ const Page = () => {
                     >
                       Learn More →
                     </Button>
-                  }
-                  onAction={() =>
-                    router.push(`/careers/${career.type.toLocaleLowerCase()}`)
                   }
                 >
                   {career.type === "full-time" ? (
