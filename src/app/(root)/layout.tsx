@@ -8,6 +8,7 @@ import QueryProvider from "@/context/QueryProvider";
 import { authUser } from "@/lib/auth";
 import { ToastContainer } from "react-toastify";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import { dark } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -24,7 +25,14 @@ export default async function RootLayout({
   console.log("Auth user:", auth);
 
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        variables: {
+          colorPrimary: "#009689",
+        },
+      }}
+    >
       <QueryProvider>
         <AuthProvider>
           {auth ? (
