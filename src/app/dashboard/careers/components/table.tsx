@@ -7,6 +7,7 @@ import React from "react";
 import Edit from "./edit";
 import Delete from "./delete";
 import { useCareerStore } from "@/lib/store/careerFilterStore";
+import Loader from "@/components/ui/loader";
 
 const Table = () => {
   const { type = "" } = useCareerStore();
@@ -32,7 +33,7 @@ const Table = () => {
     queryKey: ["careers", queryType],
     queryFn: getCareers,
   });
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (!careers || careers.length === 0) return <div>No careers found</div>;
 
   return (

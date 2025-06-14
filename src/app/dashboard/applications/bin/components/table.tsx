@@ -5,6 +5,7 @@ import React from "react";
 import { ApplicationType } from "@/app/careers/Types/application";
 import Delete from "./delete";
 import Restore from "./restore";
+import Loader from "@/components/ui/loader";
 
 const Table = () => {
   const getAppliations = async (): Promise<ApplicationType[]> => {
@@ -25,7 +26,7 @@ const Table = () => {
     queryFn: getAppliations,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (!applications || applications.length === 0)
     return <div>No applications found</div>;
 

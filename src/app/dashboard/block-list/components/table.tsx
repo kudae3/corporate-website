@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { Unban } from "./unban";
+import Loader from "@/components/ui/loader";
 
 export const Table = () => {
   const bannedusers = async (): Promise<UserType[]> => {
@@ -28,7 +29,7 @@ export const Table = () => {
     queryFn: bannedusers,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   if (!users || users.length === 0) return <div>No banned users</div>;
 

@@ -6,6 +6,7 @@ import axios from "axios";
 import { UserType } from "@/app/careers/Types/user";
 import { useQuery } from "@tanstack/react-query";
 import { useAuthContext } from "@/context/AuthContext";
+import Loading from "@/components/ui/loader";
 
 const Table = () => {
   // auth User
@@ -39,7 +40,7 @@ const Table = () => {
     enabled: !!userData?._id, // run only if userData id is available
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   if (!users || users.length === 0) return <div>No Users found</div>;
 
