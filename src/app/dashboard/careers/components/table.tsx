@@ -8,6 +8,8 @@ import Edit from "./edit";
 import Delete from "./delete";
 import { useCareerStore } from "@/lib/store/careerFilterStore";
 import Loader from "@/components/ui/loader";
+import NotFound from "../../components/NotFound";
+import careers from "@/app/careers/[type]/components/careers";
 
 const Table = () => {
   const { type = "" } = useCareerStore();
@@ -34,7 +36,7 @@ const Table = () => {
     queryFn: getCareers,
   });
   if (isLoading) return <Loader />;
-  if (!careers || careers.length === 0) return <div>No careers found</div>;
+  if (!careers || careers.length === 0) return <NotFound title="careers" />;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">

@@ -6,6 +6,7 @@ import axios from "axios";
 import React from "react";
 import { Unban } from "./unban";
 import Loader from "@/components/ui/loader";
+import NotFound from "../../components/NotFound";
 
 export const Table = () => {
   const bannedusers = async (): Promise<UserType[]> => {
@@ -31,7 +32,7 @@ export const Table = () => {
 
   if (isLoading) return <Loader />;
 
-  if (!users || users.length === 0) return <div>No banned users</div>;
+  if (!users || users.length === 0) return <NotFound title="block users" />;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">

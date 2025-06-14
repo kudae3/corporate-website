@@ -6,6 +6,7 @@ import { ApplicationType } from "@/app/careers/Types/application";
 import Delete from "./delete";
 import Restore from "./restore";
 import Loader from "@/components/ui/loader";
+import NotFound from "@/app/dashboard/components/NotFound";
 
 const Table = () => {
   const getAppliations = async (): Promise<ApplicationType[]> => {
@@ -28,7 +29,7 @@ const Table = () => {
 
   if (isLoading) return <Loader />;
   if (!applications || applications.length === 0)
-    return <div>No applications found</div>;
+    return <NotFound title="deleted applications" />;
 
   return (
     <div className="w-full rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-5">
