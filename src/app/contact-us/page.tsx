@@ -1,6 +1,3 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import ShinyText from "@/components/ui/shiny-text";
 import React from "react";
 
