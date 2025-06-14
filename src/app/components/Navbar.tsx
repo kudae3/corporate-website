@@ -98,7 +98,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   <li>
                     <a
                       className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                      href="#"
+                      href={routes.Services}
                     >
                       Services
                     </a>
@@ -248,7 +248,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
               <li>
                 <a
                   className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
-                  href="#"
+                  href={routes.Services}
                   onClick={closeMobileMenu}
                 >
                   Services
