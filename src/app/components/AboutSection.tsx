@@ -1,3 +1,4 @@
+import CountUp from "@/components/ui/count-up";
 import React from "react";
 
 const AboutSection = () => {
@@ -26,19 +27,51 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">150+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  <CountUp
+                    from={0}
+                    to={30}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                  +
+                </div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">
                   Projects Completed
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {" "}
+                  <CountUp
+                    from={0}
+                    to={20}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                  +
+                </div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">
                   Happy Clients
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">5+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {" "}
+                  <CountUp
+                    from={0}
+                    to={5}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                  +
+                </div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">
                   Years Experience
                 </div>
