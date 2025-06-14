@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import ShinyText from "@/components/ui/shiny-text";
 import React from "react";
 
 const contactInfo = [
@@ -41,11 +42,14 @@ const ContactUsPage = () => {
             Touch
           </span>
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We&apos;d love to hear from you. Whether you have a question about our
+        <ShinyText
+          text=" We'd love to hear from you. Whether you have a question about our
           services, need support, or want to discuss your next project, our team
-          is ready to help. Reach out to us using any of the methods below.
-        </p>
+          is ready to help. Reach out to us using any of the methods below."
+          disabled={false}
+          speed={3}
+          className="max-w-3xl mx-auto"
+        />
       </div>
 
       {/* Main Content */}

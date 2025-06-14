@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ShinyText from "@/components/ui/shiny-text";
 
 const page = () => {
   const services = [
@@ -160,89 +161,91 @@ const page = () => {
   ];
 
   return (
-    <div className="container min-h-screen bg-white dark:bg-gray-900 space-y-28">
-      {/* Services Grid */}
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              What We <span className="text-primary">Offer</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              From concept to deployment, we provide end-to-end technology
-              solutions
+    <div className="container space-y-28">
+      {/* Header Section */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Our{" "}
+          <span className="text-primary" style={{ fontWeight: "600" }}>
+            Services
+          </span>
+        </h2>
+        <ShinyText
+          text="Expert guidance to help you make informed digital decisions. Technology audits, digital roadmaps, and strategic planning tailored to your business goals. Ready to ride the digital tide? Let's discuss how we can help your business thrive in the digital age"
+          disabled={false}
+          speed={3}
+          className="max-w-3xl mx-auto"
+        />
+      </div>
+
+      {/* Services Section */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <div
+            key={index}
+            className={`relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${
+              service.popular ? "ring-2 ring-primary" : ""
+            }`}
+          >
+            {service.popular && (
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  Most Popular
+                </span>
+              </div>
+            )}
+
+            <div className="text-4xl mb-4">{service.icon}</div>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+              {service.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              {service.description}
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${
-                  service.popular ? "ring-2 ring-primary" : ""
-                }`}
-              >
-                {service.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  {service.description}
-                </p>
-
-                <div className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center text-sm text-gray-600 dark:text-gray-300"
-                    >
-                      <svg
-                        className="w-4 h-4 text-primary mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t pt-6">
-                  <div className="flex justify-between items-center mb-4">
-                    <div>
-                      <div className="text-2xl font-bold text-primary">
-                        {service.pricing}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {service.timeline}
-                      </div>
-                    </div>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="w-full cursor-pointer hover:bg-primary duration-300"
+            <div className="space-y-2 mb-6">
+              {service.features.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center text-sm text-gray-600 dark:text-gray-300"
+                >
+                  <svg
+                    className="w-4 h-4 text-primary mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    <Link href="/contact-us">Get Now</Link>
-                  </Button>
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {feature}
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t pt-6">
+              <div className="flex justify-between items-center mb-4">
+                <div>
+                  <div className="text-2xl font-bold text-primary">
+                    {service.pricing}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {service.timeline}
+                  </div>
                 </div>
               </div>
-            ))}
+              <Button
+                variant="outline"
+                className="w-full cursor-pointer hover:bg-primary duration-300"
+              >
+                <Link href="/contact-us">Get Now</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
 
       {/* Process Section */}
       <section className="bg-white dark:bg-gray-900">
