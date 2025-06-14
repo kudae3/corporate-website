@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import ShinyText from "@/components/ui/shiny-text";
 
 const Hero = () => {
   return (
@@ -12,11 +13,14 @@ const Hero = () => {
             Solutions
           </h1>
 
-          <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed dark:text-gray-200">
-            Stay ahead of the competition with cutting-edge digital solutions.
+          <ShinyText
+            text="Stay ahead of the competition with cutting-edge digital solutions.
             We help businesses leverage technology to streamline operations,
-            enhance customer experiences, and drive sustainable growth.
-          </p>
+            enhance customer experiences, and drive sustainable growth."
+            disabled={false}
+            speed={3}
+            className="mt-4"
+          />
 
           <div className="mt-4 flex gap-4 sm:mt-6">
             <Button
