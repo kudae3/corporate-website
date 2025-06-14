@@ -9,6 +9,7 @@ import Internship from "./[type]/detail/components/internship";
 import PartTime from "./[type]/detail/components/partTime";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import ShinyText from "@/components/ui/shiny-text";
 
 const careers = [
   {
@@ -45,12 +46,16 @@ const Page = () => {
             Our Team
           </span>
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We offer a range of career opportunities to suit your lifestyle and
+
+        <ShinyText
+          text="We offer a range of career opportunities to suit your lifestyle and
           professional goals. Whether you're looking for part-time flexibility,
           full-time commitment, or an internship to kickstart your career, we
-          have something for you.
-        </p>
+          have something for you."
+          disabled={false}
+          speed={3}
+          className="max-w-3xl mx-auto"
+        />
       </div>
       <div className="space-y-14">
         {careers.map((career, index) => (
