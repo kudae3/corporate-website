@@ -84,7 +84,7 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
   ];
 
   return (
-    <div className="border rounded-md p-1 mb-1 space-x-2 z-50 focus:outline-hidden bg-white dark:bg-gray-900">
+    <div className="border rounded-md p-1 mb-1 space-x-2 z-50 focus:outline-hidden bg-white dark:bg-slate-950">
       {Options.map((option, index) => (
         <Toggle
           key={index}

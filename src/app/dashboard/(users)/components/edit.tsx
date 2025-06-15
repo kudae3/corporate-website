@@ -116,7 +116,7 @@ const Edit = ({ user }: { user: UserType }) => {
               }
               className="peer sr-only"
             />
-            <span className="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-white transition-[inset-inline-start] peer-checked:start-6 dark:bg-gray-900"></span>
+            <span className="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-white transition-[inset-inline-start] peer-checked:start-6 dark:bg-slate-950"></span>
           </label>
         </div>
       </form>

@@ -34,7 +34,7 @@ const ServicesPreview = () => {
   ];
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-900">
+    <section className="py-16 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -52,7 +52,7 @@ const ServicesPreview = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-gray-50 dark:bg-gray-900 rounded-xl p-6"
+              className="group bg-gray-50 dark:bg-slate-950 rounded-xl p-6"
             >
               <div className="text-4xl mb-4">{service.icon}</div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-white cursor-pointer transition-colors hover:text-secondary">

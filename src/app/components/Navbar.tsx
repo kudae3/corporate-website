@@ -57,7 +57,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
   return (
     <>
       <header
-        className={`bg-white dark:bg-gray-900 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        className={`bg-white dark:bg-slate-950 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -207,7 +207,7 @@ const Navbar = ({ auth }: { auth: UserType }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-70 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
+        className={`fixed top-0 right-0 h-full w-70 bg-white dark:bg-slate-950 shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

@@ -5,7 +5,7 @@ import routes from "@/routes";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen container bg-white dark:bg-gray-900 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen container bg-white dark:bg-slate-950 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         {/* Large 404 Text */}
         <div className="mb-8">
