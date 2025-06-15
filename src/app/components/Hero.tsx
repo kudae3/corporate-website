@@ -10,14 +10,9 @@ const Hero = () => {
         <div className="max-w-prose text-left">
           <SplitText
             text="Empowering Your Business with Innovative Digital Solutions"
-            className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white"
-            delay={100}
-            duration={0.3}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
+            className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white mb-5"
+            duration={0.4}
+            splitType="words"
             rootMargin="-100px"
           />
 
