@@ -81,7 +81,7 @@ const AboutSection = () => {
 
           {/* Image/Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-br from-primary to-secondary-100 rounded-2xl p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-primary-50 mb-6">
                 To empower businesses through innovative technology solutions
