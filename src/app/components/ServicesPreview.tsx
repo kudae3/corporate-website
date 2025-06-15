@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import AnimatedContent from "@/components/ui/animated-content";
 
 const ServicesPreview = () => {
   const services = [
@@ -48,32 +49,34 @@ const ServicesPreview = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group bg-gray-50 dark:bg-slate-950 rounded-xl p-6"
-            >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-3 group-hover:text-white cursor-pointer transition-colors hover:text-secondary">
-                {service.title}
-              </h3>
-              <p className="text-gray-300 group-hover:text-primary-100 mb-4">
-                {service.description}
-              </p>
-              <ul className="space-y-1">
-                {service.features.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="text-sm text-gray-300 group-hover:text-primary-200"
-                  >
-                    • {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <AnimatedContent direction="vertical" duration={1}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group bg-gray-50 dark:bg-slate-950 rounded-xl p-6"
+              >
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-white cursor-pointer transition-colors hover:text-secondary">
+                  {service.title}
+                </h3>
+                <p className="text-gray-300 group-hover:text-primary-100 mb-4">
+                  {service.description}
+                </p>
+                <ul className="space-y-1">
+                  {service.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className="text-sm text-gray-300 group-hover:text-primary-200"
+                    >
+                      • {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </AnimatedContent>
 
         {/* CTA */}
         <div className="text-center">

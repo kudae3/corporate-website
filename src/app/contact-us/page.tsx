@@ -1,6 +1,7 @@
 import ShinyText from "@/components/ui/shiny-text";
 import React from "react";
 import YangonMap from "../components/YangonMap";
+import AnimatedContent from "@/components/ui/animated-content";
 
 const contactInfo = [
   {
@@ -54,35 +55,37 @@ const ContactUsPage = () => {
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
         {/* Left Side - Contact Information */}
         <div className="w-full lg:w-1/2 space-y-8">
-          <div className="space-y-6">
-            {contactInfo.map((info, index) => (
-              <div
-                key={index}
-                className="group p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-primary/20"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
-                    <img
-                      src={info.icon}
-                      alt={info.title}
-                      className="w-8 h-8 object-contain"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary transition-colors duration-300">
-                      {info.title}
-                    </h3>
-                    <p className="text-primary font-semibold mb-2">
-                      {info.value}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      {info.description}
-                    </p>
+          <AnimatedContent direction="horizontal" reverse={true} duration={1}>
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <div
+                  key={index}
+                  className="group p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-primary/20"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
+                      <img
+                        src={info.icon}
+                        alt={info.title}
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary transition-colors duration-300">
+                        {info.title}
+                      </h3>
+                      <p className="text-primary font-semibold mb-2">
+                        {info.value}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                        {info.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </AnimatedContent>
         </div>
 
         {/* Right Side - Map Container */}
