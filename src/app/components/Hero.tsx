@@ -8,10 +8,10 @@ const Hero = () => {
   return (
     <section className="bg-white lg:grid lg:h-screen lg:place-content-center dark:bg-slate-950 pt-12 md:pt-18 lg:pt-0">
       <div className="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-0">
-        <div className="max-w-prose text-left">
+        <div className="max-w-prose text-left space-y-5">
           <SplitText
             text="Empowering Your Business with Innovative Digital Solutions"
-            className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white mb-5"
+            className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white"
             duration={0.4}
             splitType="words"
             rootMargin="-100px"
@@ -33,7 +33,6 @@ const Hero = () => {
                 as="button"
                 className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 cursor-pointer"
               >
-                <AceternityLogo />
                 <span>Get Started</span>
               </HoverBorderGradient>
             </div>
@@ -49,27 +48,6 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-const AceternityLogo = () => {
-  return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3 text-black dark:text-white"
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 };
 
