@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ShinyText from "@/components/ui/shiny-text";
+import AnimatedContent from "@/components/ui/animated-content";
 
 const page = () => {
   const services = [
@@ -248,66 +249,70 @@ const page = () => {
       </div>
 
       {/* Process Section */}
-      <section className="bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our <span className="text-primary">Process</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A proven methodology that ensures successful project delivery
-            </p>
-          </div>
+      <AnimatedContent duration={1}>
+        <section className="bg-white dark:bg-slate-950">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Our <span className="text-primary">Process</span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                A proven methodology that ensures successful project delivery
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {item.step}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {process.map((item, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    {item.step}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedContent>
 
       {/* Benefits Section */}
-      <section className="bg-gray-50 dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Why Choose <span className="text-primary">Us</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We deliver exceptional results through expertise, innovation, and
-              dedication
-            </p>
-          </div>
+      <AnimatedContent duration={1}>
+        <section className="bg-gray-50 dark:bg-slate-950">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Why Choose <span className="text-primary">Us</span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                We deliver exceptional results through expertise, innovation,
+                and dedication
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="text-center bg-white dark:bg-gray-800 rounded-xl p-6"
-              >
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={index}
+                  className="text-center bg-white dark:bg-gray-800 rounded-xl p-6"
+                >
+                  <div className="text-4xl mb-4">{benefit.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedContent>
     </div>
   );
 };
