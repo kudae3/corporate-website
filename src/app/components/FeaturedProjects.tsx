@@ -10,7 +10,7 @@ const FeaturedProjects = () => {
       title: "E-Commerce Platform",
       category: "Web Development",
       description:
-        "A scalable e-commerce solution with advanced analytics and inventory management.",
+        "A scalable e-commerce solution with advanced analytics management.",
       image: "./e-commerce.jpg",
       technologies: ["Next.js", "Node.js", "PostgreSQL"],
       metrics: "300% increase in sales",
@@ -44,7 +44,7 @@ const FeaturedProjects = () => {
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Featured <span className="text-primary">Projects</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
+            <p className="text-sm lg:text-lg text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
               Discover how we've helped businesses transform through technology
             </p>
           </div>
@@ -52,7 +52,7 @@ const FeaturedProjects = () => {
 
         {/* Projects Grid */}
         <AnimatedContent duration={1}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -69,7 +69,7 @@ const FeaturedProjects = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="text-sm text-primary font-semibold mb-2">
+                  <div className="text-sm text-secondary font-semibold mb-2">
                     {project.category}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-200 mb-3">
@@ -81,7 +81,7 @@ const FeaturedProjects = () => {
 
                   {/* Metrics */}
                   <div className="bg-primary-50 rounded-lg mb-4">
-                    <div className="text-secondary font-semibold text-sm">
+                    <div className="font-semibold text-sm">
                       Result: {project.metrics}
                     </div>
                   </div>

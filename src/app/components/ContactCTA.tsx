@@ -13,7 +13,7 @@ const ContactCTA = () => {
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-sm lg:text-lg text-primary-100 mb-8 max-w-3xl mx-auto">
               Let's discuss how our innovative solutions can help you achieve
               your goals. Get in touch with our team of experts today.
             </p>

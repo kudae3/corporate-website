@@ -79,7 +79,7 @@ const ServicesPreview = () => {
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Our <span className="text-primary">Services</span>
         </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className=" text-sm lg:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           We offer comprehensive technology solutions tailored to your business
           needs
         </p>
