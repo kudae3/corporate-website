@@ -117,7 +117,7 @@ const FeaturedProjects = () => {
             asChild
             className="cursor-pointer hover:bg-primary duration-300 transition-colors"
           >
-            <Link href={routes.Projects}>
+            <Link href="#">
               View All Projects
               <svg
                 className="ml-2 w-5 h-5"

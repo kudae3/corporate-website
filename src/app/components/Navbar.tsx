@@ -88,7 +88,9 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                 <ul className="flex items-center justify-center gap-6 text-sm">
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                      className={`dark:hover:text-teal-400 ${
+                        pathname === routes.Home ? "dark:text-teal-500" : ""
+                      }`}
                       href={routes.Home}
                     >
                       Home
@@ -96,26 +98,23 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   </li>
 
                   <li>
-                    <a
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                    <Link
+                      className={`dark:hover:text-teal-400 ${
+                        pathname === routes.Services ? "dark:text-teal-500" : ""
+                      }`}
                       href={routes.Services}
                     >
                       Services
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                      href="#"
-                    >
-                      Projects
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
                     <Link
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                      className={`dark:hover:text-teal-400 ${
+                        pathname.startsWith(routes.Careers)
+                          ? "dark:text-teal-500"
+                          : ""
+                      }`}
                       href={routes.Careers}
                     >
                       Careers
@@ -123,23 +122,29 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   </li>
 
                   <li>
-                    <a
-                      className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+                    <Link
+                      className={`dark:hover:text-teal-400 ${
+                        pathname === routes.ContactUs
+                          ? "dark:text-teal-500"
+                          : ""
+                      }`}
                       href={routes.ContactUs}
                     >
                       Contact Us
-                    </a>
+                    </Link>
                   </li>
 
                   {auth?.role === "admin" && (
-                    <li>
-                      <Link
-                        className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                        href={routes.Dashboard}
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
+                    <Link
+                      className={`dark:hover:text-teal-400 ${
+                        pathname.startsWith(routes.Dashboard)
+                          ? "dark:text-teal-500"
+                          : ""
+                      }`}
+                      href={routes.Dashboard}
+                    >
+                      Dashboard
+                    </Link>
                   )}
                 </ul>
               </nav>
@@ -238,7 +243,9 @@ const Navbar = ({ auth }: { auth: UserType }) => {
             <ul className="space-y-4 text-center">
               <li>
                 <Link
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
+                  className={`block py-2 dark:hover:text-teal-400 ${
+                    pathname === routes.Home ? "dark:text-teal-500" : ""
+                  }`}
                   href={routes.Home}
                   onClick={closeMobileMenu}
                 >
@@ -246,26 +253,23 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                 </Link>
               </li>
               <li>
-                <a
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
+                <Link
+                  className={`block py-2 dark:hover:text-teal-400 ${
+                    pathname === routes.Services ? "dark:text-teal-500" : ""
+                  }`}
                   href={routes.Services}
                   onClick={closeMobileMenu}
                 >
                   Services
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
-                  href="#"
-                  onClick={closeMobileMenu}
-                >
-                  Projects
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
+                  className={`block py-2 dark:hover:text-teal-400 ${
+                    pathname.startsWith(routes.Careers)
+                      ? "dark:text-teal-500"
+                      : ""
+                  }`}
                   href={routes.Careers}
                   onClick={closeMobileMenu}
                 >
@@ -273,18 +277,24 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                 </Link>
               </li>
               <li>
-                <a
-                  className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
-                  href="#"
+                <Link
+                  className={`block py-2 dark:hover:text-teal-400 ${
+                    pathname === routes.ContactUs ? "dark:text-teal-500" : ""
+                  }`}
+                  href={routes.ContactUs}
                   onClick={closeMobileMenu}
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
               {auth?.role === "admin" && (
                 <li>
                   <Link
-                    className="block py-2 text-gray-700 transition hover:text-teal-600 dark:text-gray-300 dark:hover:text-teal-400"
+                    className={`block py-2 dark:hover:text-teal-400 ${
+                      pathname.startsWith(routes.Dashboard)
+                        ? "dark:text-teal-500"
+                        : ""
+                    }`}
                     href={routes.Dashboard}
                     onClick={closeMobileMenu}
                   >
