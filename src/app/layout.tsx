@@ -9,6 +9,8 @@ import { authUser } from "@/lib/auth";
 import { ToastContainer } from "react-toastify";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { dark } from "@clerk/themes";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -41,7 +43,11 @@ export default async function RootLayout({
                 <body>
                   <Navbar auth={auth} />
                   <div>
-                    <div className="min-h-screen">{children}</div>
+                    <div className="min-h-screen">
+                      {children}
+                      <ShootingStars />
+                      <StarsBackground />
+                    </div>
                     <ToastContainer />
                   </div>
                   <Footer />
@@ -53,7 +59,11 @@ export default async function RootLayout({
               <body>
                 <Navbar auth={auth} />
                 <div>
-                  <div className="min-h-screen">{children}</div>
+                  <div className="min-h-screen">
+                    {children}
+                    <ShootingStars />
+                    <StarsBackground />
+                  </div>
                   <ToastContainer />
                 </div>
                 <Footer />
