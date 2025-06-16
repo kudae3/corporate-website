@@ -45,7 +45,7 @@ body {
     @apply text-3xl font-medium mb-16 text-center;
   }
   .container {
-    @apply max-w-7xl min-h-screen mx-auto py-28 px-5 bg-white dark:bg-slate-950;
+    @apply max-w-7xl min-h-screen mt-6 mx-auto py-28 px-5 bg-white dark:bg-slate-950;
   }
   h1 {
     @apply text-2xl font-bold;

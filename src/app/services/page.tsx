@@ -144,7 +144,7 @@ const page = () => {
   ];
 
   return (
-    <div className="container space-y-28">
+    <div className="container space-y-36">
       {/* Header Section */}
       <div className="text-center mb-16">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -214,7 +214,7 @@ const page = () => {
       <AnimatedContent duration={1}>
         <section className="bg-white dark:bg-slate-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-24">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Our <span className="text-primary">Process</span>
               </h2>
@@ -226,7 +226,7 @@ const page = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {process.map((item, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  <div className="w-16 h-16 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                     {item.step}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
@@ -246,7 +246,7 @@ const page = () => {
       <AnimatedContent duration={1}>
         <section className="bg-gray-50 dark:bg-slate-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-24">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Why Choose <span className="text-primary">Us</span>
               </h2>
@@ -258,10 +258,7 @@ const page = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="text-center bg-white dark:bg-gray-800 rounded-xl p-6"
-                >
+                <div key={index} className="text-center  rounded-xl p-6">
                   <div className="text-4xl mb-4">{benefit.icon}</div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                     {benefit.title}
