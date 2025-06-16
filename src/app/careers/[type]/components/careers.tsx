@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import List from "./list";
 import Detail from "./detail";
 import { CareerType } from "../../Types/career";
+import { type } from "os";
 
 const Careers = ({
   careers,
@@ -45,8 +46,8 @@ const Careers = ({
           <div className="hidden lg:grid lg:grid-cols-5 gap-8">
             {/* Left: Job List - 2 columns */}
             <div className="lg:col-span-2 space-y-3">
-              <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div className="p-4 bg-gray-500">
+              <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="p-4 border-b border-slate-800">
                   <h3 className="text-white font-semibold">
                     Available Positions
                   </h3>
@@ -67,8 +68,8 @@ const Careers = ({
             {/* Right: Job Details - 3 columns */}
             <div className="lg:col-span-3">
               {selectedCareer && (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                  <div className="p-4 bg-gray-500">
+                <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                  <div className="p-4 border-b border-slate-800">
                     <h3 className="text-white font-semibold">Job Details</h3>
                   </div>
                   <div className="p-6">
@@ -83,8 +84,8 @@ const Careers = ({
           <div className="lg:hidden">
             {!showDetail ? (
               /* Mobile Job List */
-              <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div className="p-4 bg-gradient-to-r from-primary to-secondary">
+              <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="p-4 border-b border-slate-800">
                   <h3 className="text-white font-semibold">
                     Available Positions
                   </h3>
@@ -102,8 +103,8 @@ const Careers = ({
               </div>
             ) : (
               /* Mobile Job Detail */
-              <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div className="p-4 bg-gradient-to-r from-secondary to-primary flex items-center justify-between">
+              <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="p-4 border-b border-slate-800 flex items-center justify-between">
                   <h3 className="text-white font-semibold">Job Details</h3>
                   <button
                     onClick={() => setShowDetail(false)}
@@ -132,7 +133,7 @@ const Careers = ({
           </div>
         </div>
       ) : (
-        <div className="text-center p-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+        <div className="text-center p-12 bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700">
           <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
             <svg
               className="w-8 h-8 text-primary"
