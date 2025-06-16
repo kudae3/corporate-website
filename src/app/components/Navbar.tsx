@@ -154,15 +154,17 @@ const Navbar = ({ auth }: { auth: UserType }) => {
               <SignedOut>
                 <div className="hidden md:flex justify-center items-center gap-2">
                   <SignInButton fallbackRedirectUrl={pathname} mode="modal">
-                    <Button className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500">
-                      Sign In
-                    </Button>
+                    <button className="px-3 py-2 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 cursor-pointer">
+                      <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-600 to-transparent" />
+                      <span className="relative z-20">Sign In</span>
+                    </button>
                   </SignInButton>
 
                   <SignUpButton fallbackRedirectUrl={pathname} mode="modal">
-                    <Button className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
-                      Sign Up
-                    </Button>
+                    <button className="px-3 py-2 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 cursor-pointer">
+                      <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-600 to-transparent" />
+                      <span className="relative z-20">Sign Up</span>
+                    </button>
                   </SignUpButton>
                 </div>
               </SignedOut>
@@ -308,22 +310,24 @@ const Navbar = ({ auth }: { auth: UserType }) => {
           {/* Mobile Menu Auth Section */}
           <div className="p-4">
             <SignedOut>
-              <div className="space-y-2 border-t dark:border-gray-700">
+              <div className="space-y-2 dark:border-gray-700">
                 <SignInButton mode="modal">
-                  <Button
-                    className="block w-full rounded-md bg-teal-600 px-4 py-2.5 text-center text-sm font-medium text-white shadow-sm hover:bg-teal-700"
+                  <button
                     onClick={closeMobileMenu}
+                    className="w-full py-1 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 cursor-pointer"
                   >
-                    Sign In
-                  </Button>
+                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-600 to-transparent" />
+                    <span className="relative z-20">Sign In</span>
+                  </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <Button
-                    className="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white"
+                  <button
                     onClick={closeMobileMenu}
+                    className="w-full py-1 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 cursor-pointer"
                   >
-                    Sign Up
-                  </Button>
+                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-600 to-transparent" />
+                    <span className="relative z-20">Sign Up</span>
+                  </button>
                 </SignUpButton>
               </div>
             </SignedOut>
