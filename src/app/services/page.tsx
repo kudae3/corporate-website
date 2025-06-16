@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ShinyText from "@/components/ui/shiny-text";
 import AnimatedContent from "@/components/ui/animated-content";
+import { GlareCard } from "@/components/ui/glare-card";
 
 const page = () => {
   const services = [
@@ -10,12 +12,9 @@ const page = () => {
       title: "Web Development",
       description:
         "Custom web applications built with modern technologies and frameworks for optimal performance and user experience.",
-      icon: "💻",
       features: [
         "React/Next.js Development",
         "Full-Stack Solutions",
-        "API Integration",
-        "Database Design",
         "Cloud Deployment",
         "Performance Optimization",
       ],
@@ -27,13 +26,10 @@ const page = () => {
       title: "Mobile App Development",
       description:
         "Native and cross-platform mobile applications for iOS and Android with seamless user experiences.",
-      icon: "📱",
       features: [
         "iOS & Android Apps",
         "React Native Development",
         "Flutter Development",
-        "App Store Deployment",
-        "Push Notifications",
         "Offline Functionality",
       ],
       pricing: "Starting at $8,000",
@@ -44,14 +40,11 @@ const page = () => {
       title: "Cloud Solutions",
       description:
         "Scalable cloud infrastructure, migration services, and DevOps solutions for modern businesses.",
-      icon: "☁️",
       features: [
         "AWS/Azure Migration",
-        "DevOps & CI/CD",
         "Microservices Architecture",
         "Container Orchestration",
         "Cloud Security",
-        "Auto-scaling Solutions",
       ],
       pricing: "Starting at $3,000",
       timeline: "2-8 weeks",
@@ -61,14 +54,11 @@ const page = () => {
       title: "AI & Data Analytics",
       description:
         "Data-driven insights, machine learning solutions, and artificial intelligence implementations.",
-      icon: "🤖",
       features: [
         "Machine Learning Models",
         "Data Pipeline Development",
         "Business Intelligence",
         "Predictive Analytics",
-        "Natural Language Processing",
-        "Computer Vision",
       ],
       pricing: "Starting at $10,000",
       timeline: "8-20 weeks",
@@ -78,14 +68,10 @@ const page = () => {
       title: "E-Commerce Solutions",
       description:
         "Complete e-commerce platforms with payment integration, inventory management, and analytics.",
-      icon: "🛒",
       features: [
         "Custom E-commerce Platforms",
         "Payment Gateway Integration",
-        "Inventory Management",
-        "Order Processing",
         "Analytics Dashboard",
-        "Multi-vendor Support",
       ],
       pricing: "Starting at $7,000",
       timeline: "6-14 weeks",
@@ -95,14 +81,10 @@ const page = () => {
       title: "Digital Transformation",
       description:
         "Comprehensive digital transformation consulting and implementation for legacy systems.",
-      icon: "🔄",
       features: [
         "Legacy System Modernization",
         "Process Automation",
         "Digital Strategy Consulting",
-        "Technology Roadmapping",
-        "Change Management",
-        "Training & Support",
       ],
       pricing: "Custom Quote",
       timeline: "12-24 weeks",
@@ -180,31 +162,17 @@ const page = () => {
       </div>
 
       {/* Services Section */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map((service, index) => (
-          <div
-            key={index}
-            className={`relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${
-              service.popular ? "ring-2 ring-primary" : ""
-            }`}
-          >
-            {service.popular && (
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  Most Popular
-                </span>
-              </div>
-            )}
-
-            <div className="text-4xl mb-4">{service.icon}</div>
+          <GlareCard key={index}>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
               {service.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-3">
               {service.description}
             </p>
 
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 mb-3">
               {service.features.map((feature, idx) => (
                 <div
                   key={idx}
@@ -226,10 +194,10 @@ const page = () => {
               ))}
             </div>
 
-            <div className="border-t pt-6">
+            <div>
               <div className="flex justify-between items-center mb-4">
                 <div>
-                  <div className="text-2xl font-bold text-primary">
+                  <div className="text-lg font-bold text-primary">
                     {service.pricing}
                   </div>
                   <div className="text-sm text-gray-500">
@@ -237,14 +205,8 @@ const page = () => {
                   </div>
                 </div>
               </div>
-              <Button
-                variant="outline"
-                className="w-full cursor-pointer hover:bg-primary duration-300"
-              >
-                <Link href="/contact-us">Get Now</Link>
-              </Button>
             </div>
-          </div>
+          </GlareCard>
         ))}
       </div>
 
