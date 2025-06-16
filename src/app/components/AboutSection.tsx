@@ -1,5 +1,7 @@
+import { PinContainer } from "@/components/ui/3d-pin";
 import AnimatedContent from "@/components/ui/animated-content";
 import CountUp from "@/components/ui/count-up";
+import ShinyText from "@/components/ui/shiny-text";
 import React from "react";
 
 const AboutSection = () => {
@@ -84,30 +86,36 @@ const AboutSection = () => {
 
           {/* Image/Visual */}
           <AnimatedContent direction="horizontal" duration={1}>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary to-secondary-100 rounded-2xl p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-primary-50 mb-6">
-                  To empower businesses through innovative technology solutions
+            <PinContainer title="Our Core Mission">
+              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[25rem] lg:w-[30rem] h-[20rem] ">
+                <h3 className="text-2xl font-bold mb-4 text-white">
+                  Our Mission
+                </h3>
+                <ShinyText
+                  speed={3}
+                  className="mb-6"
+                  text="To empower businesses through innovative technology solutions
                   that drive growth, efficiency, and competitive advantage in
-                  the digital age.
-                </p>
+                  the digital age."
+                />
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <h4 className="font-semibold mb-2">Innovation</h4>
-                    <p className="text-sm text-primary-100">
+                  <div className=" border rounded-lg p-3">
+                    <h4 className="font-semibold mb-2 text-white">
+                      Innovation
+                    </h4>
+                    <p className="text-sm text-primary-100 text-white">
                       Cutting-edge solutions
                     </p>
                   </div>
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <h4 className="font-semibold mb-2">Quality</h4>
-                    <p className="text-sm text-primary-100">
+                  <div className="border rounded-lg p-3">
+                    <h4 className="font-semibold mb-2 text-white">Quality</h4>
+                    <p className="text-sm text-primary-100 text-white">
                       Excellence in delivery
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </PinContainer>
           </AnimatedContent>
         </div>
       </div>

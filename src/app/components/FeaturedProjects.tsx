@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import routes from "@/routes";
 import AnimatedContent from "@/components/ui/animated-content";
 
 const FeaturedProjects = () => {
@@ -40,7 +39,7 @@ const FeaturedProjects = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <AnimatedContent direction="horizontal" duration={1}>
-          <div className="text-center mb-12">
+          <div className="text-center mb-[100px]">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Featured <span className="text-primary">Projects</span>
             </h2>
@@ -114,11 +113,7 @@ const FeaturedProjects = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button
-            variant="ghost"
-            asChild
-            className="cursor-pointer hover:bg-primary duration-300 transition-colors"
-          >
+          <Button variant="link" asChild className="cursor-pointer ">
             <Link href="#">
               View All Projects
               <svg

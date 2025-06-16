@@ -1,8 +1,9 @@
 import React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/ui/animated-content";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import Link from "next/link";
+import routes from "@/routes";
 
 const ServicesPreview = () => {
   const services = [
@@ -92,25 +93,24 @@ const ServicesPreview = () => {
 
       {/* CTA */}
       <div className="text-center">
-        <Button
-          variant="ghost"
-          className="cursor-pointer hover:bg-primary duration-300 transition-colors mt-6"
-        >
-          View All Services
-          <svg
-            className="ml-2 w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </Button>
+        <Link href={routes.Services}>
+          <Button variant="link" className="cursor-pointer mt-6">
+            View All Services
+            <svg
+              className="ml-2 w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Button>
+        </Link>
       </div>
     </section>
   );

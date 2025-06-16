@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AnimatedContent from "@/components/ui/animated-content";
+import routes from "@/routes";
 
 const ContactCTA = () => {
   return (
@@ -22,12 +23,8 @@ const ContactCTA = () => {
           {/* Action Buttons */}
           <AnimatedContent direction="horizontal" duration={1}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
-              <Button
-                variant="ghost"
-                asChild
-                className="cursor-pointer hover:bg-primary duration-300 transition-colors"
-              >
-                <Link href="/contact-us">
+              <Button variant="link" asChild className="cursor-pointer ">
+                <Link href={routes.ContactUs}>
                   Start Your Project
                   <svg
                     className="ml-2 w-5 h-5"
