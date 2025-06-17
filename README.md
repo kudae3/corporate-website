@@ -2,7 +2,7 @@
 
 ## About This Project
 
-![Digital Tide - Empowering Your Business with Innovative Digital Solutions](./main.png)
+![Digital Tide - Empowering Your Business with Innovative Digital Solutions](./public/main.png)
 
 Digital Tide is a modern digital solutions platform built to empower businesses with innovative technology services. The platform offers comprehensive services including web development, mobile app development, cloud solutions, AI & data analytics, e-commerce solutions, and digital transformation consulting.
 
