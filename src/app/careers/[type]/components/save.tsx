@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "@/context/AuthContext";
 import { toast } from "react-toastify";
@@ -12,8 +12,33 @@ const Save = () => {
 
   const { selectedCareer } = useSelectedCareerStore();
 
-  // the data should come from real data, not false to default
   const [isSaved, setIsSaved] = React.useState(false);
+
+  useEffect(() => {
+    const checkSave = async () => {
+      try {
+        await axios
+          .get(
+            `http://localhost:3000/api/careers/save-check/${userData?._id}/${selectedCareer?._id}`
+          )
+          .then((resposne) => {
+            if (resposne.data.data.saved) {
+              console.log("Job Saved");
+              setIsSaved(true);
+            } else {
+              console.log("Job Unsaved");
+              setIsSaved(false);
+            }
+          })
+          .catch((error) => {
+            console.log("Error Checking Status", error.message);
+          });
+      } catch (error) {
+        console.log("Error Checking Status", error);
+      }
+    };
+    checkSave();
+  }, [userData?._id, selectedCareer?._id]);
 
   const handleSave = async () => {
     try {

@@ -1,6 +1,5 @@
 import React from "react";
 import Submit from "./submit";
-import { CareerType } from "../../Types/career";
 import Save from "./save";
 import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
@@ -99,7 +98,6 @@ const Detail = () => {
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
         <Submit />
-
         <Save />
       </div>
     </div>
