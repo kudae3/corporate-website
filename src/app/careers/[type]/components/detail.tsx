@@ -2,14 +2,16 @@ import React from "react";
 import Submit from "./submit";
 import { CareerType } from "../../Types/career";
 import Save from "./save";
+import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
-const Detail = ({ career }: { career: CareerType }) => {
+const Detail = () => {
+  const { selectedCareer, setSelectedCareer } = useSelectedCareerStore();
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
         <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-          {career.title}
+          {selectedCareer?.title}
         </h3>
 
         {/* Meta Information */}
@@ -34,12 +36,12 @@ const Detail = ({ career }: { career: CareerType }) => {
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-            <span>{career.location}</span>
+            <span>{selectedCareer?.location}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium capitalize">
-              {career.type}
+              {selectedCareer?.type}
             </span>
           </div>
         </div>
@@ -61,7 +63,7 @@ const Detail = ({ career }: { career: CareerType }) => {
               />
             </svg>
             <span className="text-lg font-bold text-secondary">
-              {career.salary}
+              {selectedCareer?.salary}
             </span>
           </div>
         </div>
@@ -74,7 +76,7 @@ const Detail = ({ career }: { career: CareerType }) => {
         </h4>
         <div className="prose prose-gray dark:prose-invert max-w-none">
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-            {career.description}
+            {selectedCareer?.description}
           </p>
         </div>
       </div>
@@ -86,7 +88,9 @@ const Detail = ({ career }: { career: CareerType }) => {
         </h4>
         <div className="prose prose-gray dark:prose-invert max-w-none">
           <div
-            dangerouslySetInnerHTML={{ __html: career.requirements }}
+            dangerouslySetInnerHTML={{
+              __html: selectedCareer?.requirements ?? "",
+            }}
             className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line"
           />
         </div>
@@ -94,9 +98,9 @@ const Detail = ({ career }: { career: CareerType }) => {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <Submit career={career} />
+        <Submit />
 
-        <Save career={career} />
+        <Save />
       </div>
     </div>
   );

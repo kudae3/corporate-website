@@ -5,7 +5,7 @@ type FilterStateType = {
   setType: (type: string) => void;
 };
 
-export const useCareerStore = create<FilterStateType>((set) => ({
+export const useFilteredCareerStore = create<FilterStateType>((set) => ({
   type: null,
   setType: (type) => set({ type }),
 }));

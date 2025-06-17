@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
-import { CareerType } from "../../Types/career";
 import axios from "axios";
 import { useAuthContext } from "@/context/AuthContext";
 import { toast } from "react-toastify";
+import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
-const Save = ({ career }: { career: CareerType }) => {
+const Save = () => {
   // auth User data
   const auth = useAuthContext();
   const userData = auth?.userData;
+
+  const { selectedCareer } = useSelectedCareerStore();
 
   // the data should come from real data, not false to default
   const [isSaved, setIsSaved] = React.useState(false);
@@ -18,7 +20,7 @@ const Save = ({ career }: { career: CareerType }) => {
       await axios
         .post("http://localhost:3000/api/careers/save", {
           userId: userData?._id,
-          careerId: career?._id,
+          careerId: selectedCareer?._id,
         })
         .then((resposne) => {
           if (resposne.data.data.saved) {

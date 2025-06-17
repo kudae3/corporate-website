@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCareerStore } from "@/lib/store/careerFilterStore";
+import { useFilteredCareerStore } from "@/lib/store/FilteredCareerStore";
 
 export function Filter() {
-  const { type, setType } = useCareerStore();
+  const { type, setType } = useFilteredCareerStore();
 
   return (
     <Select

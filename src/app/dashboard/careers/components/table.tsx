@@ -6,13 +6,12 @@ import axios from "axios";
 import React from "react";
 import Edit from "./edit";
 import Delete from "./delete";
-import { useCareerStore } from "@/lib/store/careerFilterStore";
 import Loader from "@/components/ui/loader";
 import NotFound from "../../components/NotFound";
-import careers from "@/app/careers/[type]/components/careers";
+import { useFilteredCareerStore } from "@/lib/store/FilteredCareerStore";
 
 const Table = () => {
-  const { type = "" } = useCareerStore();
+  const { type = "" } = useFilteredCareerStore();
   const queryType = type === "all" ? "" : type;
 
   const getCareers = async (): Promise<CareerType[]> => {

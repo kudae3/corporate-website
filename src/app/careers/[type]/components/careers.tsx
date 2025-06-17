@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import List from "./list";
 import Detail from "./detail";
 import { CareerType } from "../../Types/career";
+import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
 const Careers = ({
   careers,
@@ -11,10 +12,8 @@ const Careers = ({
   careers: CareerType[] | null;
   type: CareerType["type"];
 }) => {
-  const [selectedCareer, setSelectedCareer] = useState<
-    CareerType | undefined
-  >();
   const [showDetail, setShowDetail] = useState(false);
+  const { selectedCareer, setSelectedCareer } = useSelectedCareerStore();
 
   useEffect(() => {
     if (careers && careers.length > 0) {
@@ -72,7 +71,7 @@ const Careers = ({
                     <h3 className="text-white font-semibold">Job Details</h3>
                   </div>
                   <div className="p-6">
-                    <Detail career={selectedCareer} />
+                    <Detail />
                   </div>
                 </div>
               )}
@@ -124,9 +123,7 @@ const Careers = ({
                     </svg>
                   </button>
                 </div>
-                <div className="p-6">
-                  {selectedCareer && <Detail career={selectedCareer} />}
-                </div>
+                <div className="p-6">{selectedCareer && <Detail />}</div>
               </div>
             )}
           </div>

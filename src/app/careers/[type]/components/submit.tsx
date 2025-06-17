@@ -13,8 +13,10 @@ import { useAuthContext } from "@/context/AuthContext";
 import axios from "axios";
 import { CareerType } from "../../Types/career";
 import { toast } from "react-toastify";
+import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
-const Submit = ({ career }: { career: CareerType }) => {
+const Submit = () => {
+  const { selectedCareer } = useSelectedCareerStore();
   const [resumeURL, setResumeURL] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     message: "",
@@ -58,7 +60,7 @@ const Submit = ({ career }: { career: CareerType }) => {
     console.log("User data:", userData);
 
     const userId = userData?._id || "";
-    const careerId = career._id || "";
+    const careerId = selectedCareer?._id || "";
     const resume = resumeURL || "";
     const coverLetter = formData.message || "";
 
@@ -85,7 +87,7 @@ const Submit = ({ career }: { career: CareerType }) => {
 
   return (
     <Alert
-      onAction={() => SubmitJob(career._id)}
+      onAction={() => SubmitJob(selectedCareer?._id || "")}
       action="Submit"
       btnDisabled={!isValidForm()}
       trigger={
@@ -103,7 +105,7 @@ const Submit = ({ career }: { career: CareerType }) => {
       <div className="space-y-6">
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            Apply for {career.title}
+            Apply for {selectedCareer?.title}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Fill out the form below to submit your application
