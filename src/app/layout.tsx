@@ -40,47 +40,46 @@ export default async function RootLayout({
         <AuthProvider>
           {auth ? (
             <EdgeStoreProvider>
-              <html lang="en">
-                <body>
-                  <Navbar auth={auth} />
-                  <div>
-                    <div className="min-h-screen">
-                      {children}
-                      <ShootingStars />
-                      <StarsBackground />
-                    </div>
-                    <Toaster
-                      position="top-right"
-                      toastOptions={{
-                        style: {
-                          background: "#333",
-                          color: "#fff",
-                        },
-                      }}
-                    />
-                  </div>
-                  <Footer />
-                </body>
-              </html>
+              <PageContent auth={auth}>{children}</PageContent>
             </EdgeStoreProvider>
           ) : (
-            <html lang="en">
-              <body>
-                <Navbar auth={auth} />
-                <div>
-                  <div className="min-h-screen">
-                    {children}
-                    <ShootingStars />
-                    <StarsBackground />
-                  </div>
-                  <Toaster />
-                </div>
-                <Footer />
-              </body>
-            </html>
+            <EdgeStoreProvider>
+              <PageContent auth={auth}>{children}</PageContent>
+            </EdgeStoreProvider>
           )}
         </AuthProvider>
       </QueryProvider>
     </ClerkProvider>
   );
 }
+
+const PageContent = ({
+  children,
+  auth,
+}: {
+  children: React.ReactNode;
+  auth: any;
+}) => (
+  <html lang="en">
+    <body>
+      <Navbar auth={auth} />
+      <div>
+        <div className="min-h-screen">
+          {children}
+          <ShootingStars />
+          <StarsBackground />
+        </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }}
+        />
+      </div>
+      <Footer />
+    </body>
+  </html>
+);
