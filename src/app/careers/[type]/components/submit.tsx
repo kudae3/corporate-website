@@ -11,7 +11,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { useAuthContext } from "@/context/AuthContext";
 import axios from "axios";
 import { CareerType } from "../../Types/career";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 
 const Submit = () => {

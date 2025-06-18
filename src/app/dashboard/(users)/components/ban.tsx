@@ -5,7 +5,7 @@ import BanUserIcon from "@/components/icons/BanUserIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Ban = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();

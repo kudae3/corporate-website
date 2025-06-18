@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "@/context/AuthContext";
-import { toast } from "react-toastify";
 import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
+import toast from "react-hot-toast";
 
 const Save = () => {
   // auth User data
@@ -54,7 +54,7 @@ const Save = () => {
             setIsSaved(true);
           } else {
             console.log("Job unsaved successfully");
-            toast.info("Job unsaved successfully");
+            toast.success("Job unsaved successfully");
             setIsSaved(false);
           }
         })

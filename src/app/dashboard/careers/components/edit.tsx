@@ -6,7 +6,7 @@ import { getPlainTextLength } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Edit = ({ career }: { career: CareerType }) => {
   const [descriptionError, setDescriptionError] = useState(false);

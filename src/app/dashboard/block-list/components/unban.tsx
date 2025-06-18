@@ -4,7 +4,7 @@ import { UTurnArrow } from "@/components/icons/UTurnArrow";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export const Unban = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();

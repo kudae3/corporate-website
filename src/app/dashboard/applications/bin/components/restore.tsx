@@ -3,7 +3,7 @@ import { ApplicationType } from "@/app/careers/Types/application";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Restore = ({ application }: { application: ApplicationType }) => {
   const queryClient = useQueryClient();

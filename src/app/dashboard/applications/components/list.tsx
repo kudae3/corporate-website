@@ -4,6 +4,7 @@ import React from "react";
 import Delete from "./delete";
 import { Alert } from "@/app/components/AlertDialog";
 import { saveAs } from "file-saver";
+import toast from "react-hot-toast";
 
 const List = ({ application, i }: { application: ApplicationType; i: any }) => {
   const downloadCV = async () => {
@@ -15,7 +16,7 @@ const List = ({ application, i }: { application: ApplicationType; i: any }) => {
       saveAs(blob, `${application?.user?.username}-resume.pdf`);
     } catch (error) {
       console.error("Error downloading CV:", error);
-      alert("Failed to download CV. Please try again.");
+      toast.error("Failed to download CV. Please try again.");
     }
   };
   return (

@@ -4,7 +4,7 @@ import { TrashIcon } from "@/components/icons/TrashIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Delete = ({ career }: { career: CareerType }) => {
   const queryClient = useQueryClient();

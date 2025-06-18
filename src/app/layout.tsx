@@ -6,11 +6,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { AuthProvider } from "@/context/AuthContext";
 import QueryProvider from "@/context/QueryProvider";
 import { authUser } from "@/lib/auth";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { dark } from "@clerk/themes";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Digital Tide",
@@ -48,7 +49,15 @@ export default async function RootLayout({
                       <ShootingStars />
                       <StarsBackground />
                     </div>
-                    <ToastContainer />
+                    <Toaster
+                      position="top-right"
+                      toastOptions={{
+                        style: {
+                          background: "#333",
+                          color: "#fff",
+                        },
+                      }}
+                    />
                   </div>
                   <Footer />
                 </body>
@@ -64,7 +73,7 @@ export default async function RootLayout({
                     <ShootingStars />
                     <StarsBackground />
                   </div>
-                  <ToastContainer />
+                  <Toaster />
                 </div>
                 <Footer />
               </body>

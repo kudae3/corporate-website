@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { EditIcon } from "lucide-react";
 import React, { useEffect } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Edit = ({ user }: { user: UserType }) => {
   const queryClient = useQueryClient();
