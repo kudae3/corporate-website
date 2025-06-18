@@ -38,15 +38,9 @@ export default async function RootLayout({
     >
       <QueryProvider>
         <AuthProvider>
-          {auth ? (
-            <EdgeStoreProvider>
-              <PageContent auth={auth}>{children}</PageContent>
-            </EdgeStoreProvider>
-          ) : (
-            <EdgeStoreProvider>
-              <PageContent auth={auth}>{children}</PageContent>
-            </EdgeStoreProvider>
-          )}
+          <EdgeStoreProvider>
+            <PageContent auth={auth}>{children}</PageContent>
+          </EdgeStoreProvider>
         </AuthProvider>
       </QueryProvider>
     </ClerkProvider>
