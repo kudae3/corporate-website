@@ -121,18 +121,20 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                     </Link>
                   </li>
 
-                  <li>
-                    <Link
-                      className={`dark:hover:text-teal-400 ${
-                        pathname.startsWith(routes.SavedCareers)
-                          ? "dark:text-teal-500"
-                          : ""
-                      }`}
-                      href={routes.SavedCareers}
-                    >
-                      Saved Jobs
-                    </Link>
-                  </li>
+                  {auth && (
+                    <li>
+                      <Link
+                        className={`dark:hover:text-teal-400 ${
+                          pathname.startsWith(routes.SavedCareers)
+                            ? "dark:text-teal-500"
+                            : ""
+                        }`}
+                        href={routes.SavedCareers}
+                      >
+                        Saved Jobs
+                      </Link>
+                    </li>
+                  )}
 
                   <li>
                     <Link
@@ -291,6 +293,21 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   Careers
                 </Link>
               </li>
+              {auth && (
+                <li>
+                  <Link
+                    className={`block py-2 dark:hover:text-teal-400 ${
+                      pathname.startsWith(routes.SavedCareers)
+                        ? "dark:text-teal-500"
+                        : ""
+                    }`}
+                    href={routes.SavedCareers}
+                    onClick={closeMobileMenu}
+                  >
+                    Save Jobs
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   className={`block py-2 dark:hover:text-teal-400 ${
