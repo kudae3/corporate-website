@@ -124,6 +124,19 @@ const Navbar = ({ auth }: { auth: UserType }) => {
                   <li>
                     <Link
                       className={`dark:hover:text-teal-400 ${
+                        pathname.startsWith(routes.SavedCareers)
+                          ? "dark:text-teal-500"
+                          : ""
+                      }`}
+                      href={routes.SavedCareers}
+                    >
+                      Saved Jobs
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className={`dark:hover:text-teal-400 ${
                         pathname === routes.ContactUs
                           ? "dark:text-teal-500"
                           : ""
