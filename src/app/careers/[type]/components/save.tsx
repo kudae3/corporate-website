@@ -19,7 +19,7 @@ const Save = () => {
       try {
         await axios
           .get(
-            `http://localhost:3000/api/careers/save-check/${userData?._id}/${selectedCareer?._id}`
+            `http://localhost:3000/api/save-check/${userData?._id}/${selectedCareer?._id}`
           )
           .then((resposne) => {
             if (resposne.data.data.saved) {

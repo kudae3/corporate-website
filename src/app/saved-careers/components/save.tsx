@@ -4,6 +4,7 @@ import axios from "axios";
 import { useAuthContext } from "@/context/AuthContext";
 import { useSelectedCareerStore } from "@/lib/store/SelectedCareerStore";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Save = () => {
   // auth User data
@@ -14,12 +15,13 @@ const Save = () => {
 
   const [isSaved, setIsSaved] = React.useState(false);
 
+  const queryClient = useQueryClient();
   useEffect(() => {
     const checkSave = async () => {
       try {
         await axios
           .get(
-            `http://localhost:3000/api/careers/save-check/${userData?._id}/${selectedCareer?._id}`
+            `http://localhost:3000/api/save-check/${userData?._id}/${selectedCareer?._id}`
           )
           .then((resposne) => {
             if (resposne.data.data.saved) {
@@ -53,9 +55,12 @@ const Save = () => {
             toast.success("Job saved successfully");
             setIsSaved(true);
           } else {
+            setIsSaved(false);
+            queryClient.invalidateQueries({
+              queryKey: ["saved-careers", userData?._id],
+            });
             console.log("Job unsaved successfully");
             toast.success("Job unsaved successfully");
-            setIsSaved(false);
           }
         })
         .catch((error) => {
