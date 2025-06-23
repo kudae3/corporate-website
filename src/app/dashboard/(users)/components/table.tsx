@@ -8,22 +8,29 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuthContext } from "@/context/AuthContext";
 import NotFound from "../../components/NotFound";
 import Loader from "@/components/ui/loader";
+import { useFilteredRoleStore } from "@/lib/store/FilteredRoleStore";
 
 const Table = () => {
   // auth User
   const authContext = useAuthContext();
   const userData = authContext?.userData;
 
+  const { role, setRole } = useFilteredRoleStore();
+  console.log("Selected Role:", role);
+
+  const userRole = role === "all" ? "" : role;
+
   const fetchUsers = async (): Promise<UserType[]> => {
     try {
-      const response = await axios.get("http://localhost:3000/api/users");
+      const url = userRole
+        ? `http://localhost:3000/api/users/${role}`
+        : "http://localhost:3000/api/users";
+      const response = await axios.get(url);
       const allUsers = response.data.data;
-      console.log("All Users:", allUsers);
+      console.log("Return Users:", allUsers);
 
       const users = allUsers.filter((user: UserType) => {
-        return (
-          user?._id !== userData?._id && user?.clerkProfile?.banned === false
-        );
+        return user?.clerkProfile?.banned === false;
       });
       console.log("Filtered Users:", users);
 
@@ -36,7 +43,7 @@ const Table = () => {
 
   // Queries
   const { data: users = [], isLoading } = useQuery<UserType[]>({
-    queryKey: ["users"],
+    queryKey: ["users", userRole],
     queryFn: fetchUsers,
     enabled: !!userData?._id, // run only if userData id is available
   });
