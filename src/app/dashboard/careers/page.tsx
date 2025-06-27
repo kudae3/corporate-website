@@ -3,6 +3,7 @@ import Table from "./components/table";
 import Add from "./components/add";
 import { Filter } from "./components/filter";
 import { Input } from "@/components/ui/input";
+import Search from "./components/search";
 
 const page = () => {
   return (
@@ -20,7 +21,7 @@ const page = () => {
       </div>
       <div className="flex justify-between gap-3">
         <Filter />
-        <Input type="text" placeholder="Search" />
+        <Search />
       </div>
       <Table />
     </div>

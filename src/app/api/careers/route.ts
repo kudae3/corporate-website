@@ -1,3 +1,4 @@
+import careers from "@/app/careers/[type]/components/careers";
 import dbConnect from "@/database/dbConnect";
 import errorResponse from "@/lib/responses/errorResponse";
 import successResponse from "@/lib/responses/successResponse";
@@ -10,16 +11,34 @@ export const GET = async (request: NextRequest) => {
     await dbConnect();
 
     const { searchParams } = new URL(request.url);
-    const search = searchParams.get("type") || "";
+    const type = searchParams.get("type") || "";
+    const search = searchParams.get("search") || "";
 
-    if (!search) {
+    if (!type && !search) {
       const careers = await Career.find();
       return successResponse("careers fetched successfully", careers, 200);
     }
 
-    const careers = await Career.find({ type: search });
+    if (type) {
+      const careers = await Career.find({ type });
+    }
+
+    if (search) {
+      const careers = await Career.find({
+        $or: [
+          { title: { $regex: search, $options: "i" } },
+          { location: { $regex: search, $options: "i" } },
+        ],
+      });
+      return successResponse(
+        `Careers matching "${search}" fetched successfully`,
+        careers,
+        200
+      );
+    }
+
     return successResponse(
-      `${search} careers fetched successfully`,
+      `${type} careers fetched successfully`,
       careers,
       200
     );
