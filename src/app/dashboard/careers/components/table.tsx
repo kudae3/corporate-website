@@ -8,17 +8,20 @@ import Edit from "./edit";
 import Delete from "./delete";
 import Loader from "@/components/ui/loader";
 import NotFound from "../../components/NotFound";
-import { useFilteredCareerStore } from "@/lib/store/FilteredCareerStore";
+import { useSearchParams } from "next/navigation";
 
 const Table = () => {
-  const { type = "" } = useFilteredCareerStore();
-  const queryType = type === "all" ? "" : type;
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search") || "";
+  const queryType = searchParams.get("type") || "all";
 
   const getCareers = async (): Promise<CareerType[]> => {
     try {
-      const url = queryType
-        ? `http://localhost:3000/api/careers?type=${queryType}`
-        : "http://localhost:3000/api/careers";
+      let url = "http://localhost:3000/api/careers";
+      const params = [];
+      if (queryType !== "all") params.push(`type=${queryType}`);
+      if (search) params.push(`search=${encodeURIComponent(search)}`);
+      if (params.length) url += `?${params.join("&")}`;
       const response = await axios.get(url);
       const careers = response.data.data;
       console.log("Careers fetched:", careers);
@@ -31,7 +34,7 @@ const Table = () => {
 
   // queries
   const { data: careers, isLoading } = useQuery<CareerType[]>({
-    queryKey: ["careers", queryType],
+    queryKey: ["careers", queryType, search],
     queryFn: getCareers,
   });
   if (isLoading) return <Loader />;

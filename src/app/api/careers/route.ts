@@ -19,10 +19,33 @@ export const GET = async (request: NextRequest) => {
       return successResponse("careers fetched successfully", careers, 200);
     }
 
-    if (type) {
-      const careers = await Career.find({ type });
+    // Both type and search: filter by both
+    if (type && search) {
+      const careers = await Career.find({
+        type,
+        $or: [
+          { title: { $regex: search, $options: "i" } },
+          { location: { $regex: search, $options: "i" } },
+        ],
+      });
+      return successResponse(
+        `Careers matching type "${type}" and search "${search}" fetched successfully`,
+        careers,
+        200
+      );
     }
 
+    // Only type
+    if (type) {
+      const careers = await Career.find({ type });
+      return successResponse(
+        `${type} careers fetched successfully`,
+        careers,
+        200
+      );
+    }
+
+    // Only search
     if (search) {
       const careers = await Career.find({
         $or: [
@@ -36,12 +59,6 @@ export const GET = async (request: NextRequest) => {
         200
       );
     }
-
-    return successResponse(
-      `${type} careers fetched successfully`,
-      careers,
-      200
-    );
   } catch (error) {
     return errorResponse("Failed to fetch careers", error, 500);
   }
